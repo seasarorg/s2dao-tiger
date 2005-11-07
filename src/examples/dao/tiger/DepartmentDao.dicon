@@ -3,7 +3,7 @@
 "http://www.seasar.org/dtd/components.dtd">
 <components>
 	<include path="dao.dicon"/>
-	<component class="examples.dao.backport175.EmployeeAutoDao">
+	<component class="examples.dao.tiger.DepartmentDao">
 		<aspect>dao.interceptor</aspect>
 	</component>
 </components>

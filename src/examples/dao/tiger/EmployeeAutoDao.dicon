@@ -2,8 +2,8 @@
 <!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container//EN"
 "http://www.seasar.org/dtd/components.dtd">
 <components>
-	<include path="dao-tiger.dicon"/>
-	<component class="examples.dao.tiger.EmployeeDao">
+	<include path="dao.dicon"/>
+	<component class="examples.dao.tiger.EmployeeAutoDao">
 		<aspect>dao.interceptor</aspect>
 	</component>
 </components>

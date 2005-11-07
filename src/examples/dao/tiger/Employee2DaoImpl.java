@@ -1,4 +1,4 @@
-package examples.dao;
+package examples.dao.tiger;
 
 import java.util.List;
 

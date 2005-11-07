@@ -1,4 +1,4 @@
-package examples.dao;
+package examples.dao.tiger;
 
 import org.seasar.dao.annotation.tiger.S2Dao;
 

@@ -1,11 +1,11 @@
-package examples.dao;
+package examples.dao.tiger;
 
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.S2ContainerFactory;
 
 public class DepartmentDaoClient {
 
-	private static final String PATH = "examples/dao/DepartmentDao.dicon";
+	private static final String PATH = "examples/dao/tiger/DepartmentDao.dicon";
 
 	public static void main(String[] args) {
 		S2Container container = S2ContainerFactory.create(PATH);

@@ -1,4 +1,4 @@
-package examples.dao;
+package examples.dao.tiger;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.seasar.framework.container.factory.S2ContainerFactory;
 
 public class EmployeeAutoDaoClient {
 
-	private static final String PATH = "examples/dao/backport175/EmployeeAutoDao.dicon";
+	private static final String PATH = "examples/dao/tiger/EmployeeAutoDao.dicon";
 
 	public static void main(String[] args) {
 		S2Container container = S2ContainerFactory.create(PATH);

@@ -1,11 +1,14 @@
-package examples.dao;
+package examples.dao.tiger;
 
 import java.util.List;
+
+import org.seasar.dao.annotation.tiger.S2Dao;
 /**
  * 
  * @author è„å¥Å@åcéO
- * @S2Dao(bean=examples.dao.backport175.Employee.class)
+ * 
  */
+@S2Dao(bean=Employee.class)
 public interface EmployeeAutoDao {
 
 	public List getAllEmployees();
