@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src">
-		<attributes>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry output="target/test-classes" kind="src" path="src/test/java"/>
+	<classpathentry output="target/test-classes" kind="src" path="src/test/resources"/>
+	<classpathentry kind="src" path="src/example/java"/>
+	<classpathentry kind="src" path="src/example/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 		</attributes>
@@ -16,5 +18,5 @@
 		<attributes>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="output" path="build"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>
