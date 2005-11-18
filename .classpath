@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src/main/java"/>
-	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry output="target/test-classes" kind="src" path="src/test/java"/>
-	<classpathentry output="target/test-classes" kind="src" path="src/test/resources"/>
-	<classpathentry kind="src" path="src/example/java"/>
-	<classpathentry kind="src" path="src/example/resources"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
-		<attributes>
-		</attributes>
-	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/s2dao">
-		<attributes>
-		</attributes>
-	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/seasar2">
-		<attributes>
-		</attributes>
-	</classpathentry>
+	<classpathentry output="s2-dao-tiger/target/classes" kind="src" path="s2-dao-tiger/src/main/java"/>
+	<classpathentry output="s2-dao-tiger/target/classes" kind="src" path="s2-dao-tiger/src/main/resources"/>
+	<classpathentry output="s2-dao-tiger/target/test-classes" kind="src" path="s2-dao-tiger/src/test/java"/>
+	<classpathentry output="s2-dao-tiger/target/test-classes" kind="src" path="s2-dao-tiger/src/test/resources"/>
+	<classpathentry output="s2-dao-tiger-examples/target/classes" kind="src" path="s2-dao-tiger-examples/src/main/java"/>
+	<classpathentry output="s2-dao-tiger-examples/target/classes" kind="src" path="s2-dao-tiger-examples/src/main/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/s2dao"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/seasar2"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
