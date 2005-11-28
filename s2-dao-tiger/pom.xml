@@ -4,12 +4,11 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
 >
   <parent>
-    <groupId>org.seasar.dao.annotation.tiger</groupId>
+    <groupId>org.seasar.dao.annotation</groupId>
     <artifactId>s2-dao-tiger-project</artifactId>
     <version>1.0.29-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.seasar.dao.annotation.tiger</groupId>
   <artifactId>s2-dao-tiger</artifactId>
   <packaging>jar</packaging>
   <name>S2Dao Tiger</name>
