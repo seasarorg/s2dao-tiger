@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import org.seasar.dao.annotation.tiger.Bean;
+import org.seasar.dao.annotation.tiger.Column;
 import org.seasar.dao.annotation.tiger.Relation;
 @Bean(table="EMP")
 public class Employee implements Serializable {
@@ -97,10 +98,8 @@ public class Employee implements Serializable {
 	public void setDeptno(int deptno) {
 		this.deptno = deptno;
 	}
-	/**
-	 * @Column("tstamp")
-	 * @return
-	 */
+
+	@Column("tstamp")
 	public Timestamp getTimestamp() {
 		return this.timestamp;
 	}

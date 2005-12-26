@@ -7,7 +7,7 @@ import org.seasar.framework.container.factory.S2ContainerFactory;
 
 public class Employee2DaoClient {
 
-	private static final String PATH = "examples/dao/backport175/Employee2Dao.dicon";
+	private static final String PATH = "examples/dao/tiger/Employee2Dao.dicon";
 
 	public static void main(String[] args) {
 		S2Container container = S2ContainerFactory.create(PATH);
