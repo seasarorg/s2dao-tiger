@@ -1,0 +1,24 @@
+<project name="s2dao" default="dist" basedir=".">
+	<property name="ver" value="1.0.30RC1"/>
+
+	<target name="dist">
+		<mkdir dir="target"/>
+		<zip zipfile="target/s2-dao-tiger-${ver}.zip">
+			<zipfileset prefix="s2dao-tiger" dir=".">
+				<exclude name="**/target/**"/>
+				<exclude name="**/.settings/**"/>
+			</zipfileset>
+			<zipfileset prefix="s2dao-tiger/lib" 
+				dir="s2-dao-tiger/target">
+				<include name="s2-dao-${ver}.jar"/>
+			</zipfileset>
+			<zipfileset prefix="s2dao-tiger/resources" 
+				dir="s2-dao-tiger/src/test/resources">
+				<include name="dao.dicon"/>
+				<include name="j2ee.dicon"/>
+				<include name="log4j.properties"/>
+			</zipfileset>
+		</zip>
+	</target>
+
+</project>
