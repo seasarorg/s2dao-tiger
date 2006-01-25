@@ -29,7 +29,10 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
 	}
 
 	public String getTableAnnotation() {
-		return (bean_!=null)?bean_.table():null;
+		if(bean_ == null || bean_.table().length()==0){
+			return null;
+		}
+		return bean_.table();
 	}
 
 	public String getVersionNoProteryNameAnnotation() {
