@@ -7,6 +7,7 @@ import org.seasar.dao.DaoAnnotationReader;
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.NoPersistentProperty;
 import org.seasar.dao.annotation.tiger.PersistentProperty;
+import org.seasar.dao.annotation.tiger.Procedure;
 import org.seasar.dao.annotation.tiger.Query;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;
@@ -22,6 +23,10 @@ public class DaoAnnotationReaderImpl implements DaoAnnotationReader {
 	public String getQuery(Method method) {
 		Query query = method.getAnnotation(Query.class);
 		return (query!=null)?query.value():null;
+	}
+	public String getStoredProcedureName(Method method) {
+		Procedure procedure = method.getAnnotation(Procedure.class);
+		return (procedure!=null)?procedure.value():null;
 	}
 
 	public String[] getArgNames(Method method) {
