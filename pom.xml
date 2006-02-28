@@ -62,6 +62,12 @@
             <target>1.5</target>
           </configuration>
         </plugin>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <configuration>
+            <updateReleaseInfo>true</updateReleaseInfo>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
