@@ -50,8 +50,6 @@ public class AnnotationDaoMetaDataImplTest extends DaoMetaDataImplTest {
 			return EmployeeDao.class;
 		}else if(className.equals("EmployeeAutoDao")){
 			return EmployeeAutoDao.class;
-		}else if(className.equals("FormUseHistoryDao")){
-			return FormUseHistoryDao.class;
 		}else if(className.equals("IllegalEmployeeAutoDao")){
 			return IllegalEmployeeAutoDao.class;
 		}else if(className.equals("Employee2Dao")){

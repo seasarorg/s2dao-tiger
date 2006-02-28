@@ -123,14 +123,6 @@ public abstract class DaoMetaDataImplTest extends S2TestCase {
 		cmd.execute(new Object[] { emp });
 	}
 
-	public void testInsertAuto() throws Exception {
-		DaoMetaData dmd = new DaoMetaDataImpl(getDaoClass("FormUseHistoryDao"),
-				getDataSource(), BasicStatementFactory.INSTANCE,
-				BasicResultSetFactory.INSTANCE,readerFactory);
-		InsertAutoStaticCommand cmd = (InsertAutoStaticCommand) dmd
-				.getSqlCommand("insert");
-		assertNotNull("1", cmd);
-	}
 	private void setProperty(Object obj,String name,Object value){
 		BeanDesc desc = BeanDescFactory.getBeanDesc(obj.getClass());
 		PropertyDesc propertyDesc = desc.getPropertyDesc(name);
