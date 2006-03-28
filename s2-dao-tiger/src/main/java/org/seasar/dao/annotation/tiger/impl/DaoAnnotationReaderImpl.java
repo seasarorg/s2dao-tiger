@@ -15,7 +15,6 @@
  */
 package org.seasar.dao.annotation.tiger.impl;
 
-import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Method;
 
 import org.seasar.dao.DaoAnnotationReader;

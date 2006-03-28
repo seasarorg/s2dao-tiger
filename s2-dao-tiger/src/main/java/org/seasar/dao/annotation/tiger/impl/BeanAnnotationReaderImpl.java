@@ -32,11 +32,19 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
 		this.beanClass_ = beanClass;
 		bean_ = (Bean) beanClass_.getAnnotation(Bean.class);
 	}
-	private <T extends Annotation> T getPropertyAnnotation(Class<T> clazz,PropertyDesc pd){
-		T annotation = pd.getWriteMethod().getAnnotation(clazz);
-		if(annotation!=null)
-			return annotation;
-		return pd.getReadMethod().getAnnotation(clazz);
+	private <T extends Annotation> T
+		getPropertyAnnotation(Class<T> clazz,PropertyDesc pd){
+		if(pd.getWriteMethod() != null){
+			T annotation = 
+				pd.getWriteMethod().getAnnotation(clazz);
+			if(annotation!=null){
+				return annotation;				
+			}
+		}
+		if(pd.getReadMethod() != null){
+			return pd.getReadMethod().getAnnotation(clazz);
+		}
+		return null;
 	}
 	public String getColumnAnnotation(PropertyDesc pd) {
 		Column column = getPropertyAnnotation(Column.class,pd);
