@@ -1,3 +1,18 @@
+/*
+ * Copyright 2004-2006 the Seasar Foundation and the Others.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */
 package org.seasar.dao.annotation.tiger.impl;
 
 import java.lang.annotation.Annotation;
@@ -17,11 +32,19 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
 		this.beanClass_ = beanClass;
 		bean_ = (Bean) beanClass_.getAnnotation(Bean.class);
 	}
-	private <T extends Annotation> T getPropertyAnnotation(Class<T> clazz,PropertyDesc pd){
-		T annotation = pd.getWriteMethod().getAnnotation(clazz);
-		if(annotation!=null)
-			return annotation;
-		return pd.getReadMethod().getAnnotation(clazz);
+	private <T extends Annotation> T
+		getPropertyAnnotation(Class<T> clazz,PropertyDesc pd){
+		if(pd.getWriteMethod() != null){
+			T annotation = 
+				pd.getWriteMethod().getAnnotation(clazz);
+			if(annotation!=null){
+				return annotation;				
+			}
+		}
+		if(pd.getReadMethod() != null){
+			return pd.getReadMethod().getAnnotation(clazz);
+		}
+		return null;
 	}
 	public String getColumnAnnotation(PropertyDesc pd) {
 		Column column = getPropertyAnnotation(Column.class,pd);

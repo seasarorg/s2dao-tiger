@@ -1,3 +1,18 @@
+/*
+ * Copyright 2004-2006 the Seasar Foundation and the Others.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ * either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */
 package org.seasar.dao.annotation.tiger.impl;
 
 import java.util.ArrayList;
@@ -123,14 +138,6 @@ public abstract class DaoMetaDataImplTest extends S2TestCase {
 		cmd.execute(new Object[] { emp });
 	}
 
-	public void testInsertAuto() throws Exception {
-		DaoMetaData dmd = new DaoMetaDataImpl(getDaoClass("FormUseHistoryDao"),
-				getDataSource(), BasicStatementFactory.INSTANCE,
-				BasicResultSetFactory.INSTANCE,readerFactory);
-		InsertAutoStaticCommand cmd = (InsertAutoStaticCommand) dmd
-				.getSqlCommand("insert");
-		assertNotNull("1", cmd);
-	}
 	private void setProperty(Object obj,String name,Object value){
 		BeanDesc desc = BeanDescFactory.getBeanDesc(obj.getClass());
 		PropertyDesc propertyDesc = desc.getPropertyDesc(name);
@@ -335,9 +342,12 @@ public abstract class DaoMetaDataImplTest extends S2TestCase {
 	}
 
 	public void testGetDaoInterface() throws Exception {
-		assertEquals("1", EmployeeDao.class, DaoMetaDataImpl
+		DaoMetaDataImpl dmd = new DaoMetaDataImpl(getDaoClass("EmployeeAutoDao"),
+				getDataSource(), BasicStatementFactory.INSTANCE,
+				BasicResultSetFactory.INSTANCE,readerFactory);
+		assertEquals("1", EmployeeDao.class, dmd
 				.getDaoInterface(EmployeeDao.class));
-		assertEquals("2", EmployeeDao.class, DaoMetaDataImpl
+		assertEquals("2", EmployeeDao.class, dmd
 				.getDaoInterface(EmployeeDaoImpl.class));
 	}
 

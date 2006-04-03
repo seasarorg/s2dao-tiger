@@ -13,24 +13,22 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.dao.annotation.tiger.impl;
+package examples.dao.tiger;
 
+import java.util.Map;
+
+import org.seasar.dao.annotation.tiger.Procedure;
 import org.seasar.dao.annotation.tiger.S2Dao;
-import org.seasar.dao.annotation.tiger.Sql;
 
-@S2Dao(bean=Employee5.class)
-public interface Employee7Dao {
 
-	/**
-	 * @return
-	 */
-	@Sql("SELECT COUNT(*) FROM emp")
-	public int getCount();
-	
-	/**
-	 * @param empno
-	 * @return
-	 */
-	@Sql("DELETE FROM emp WHERE empno=?")
-	public int deleteEmployee(int empno);
+@S2Dao(bean=Employee.class)
+public interface StoredProcedureTestDao {
+	@Procedure("SALES_TAX")
+	public double getSalesTax(double subtotal);
+	@Procedure("SALES_TAX2")
+	public double getSalesTax2(double subtotal);
+	@Procedure("SALES_TAX3")
+	public double getSalesTax3(double subtotal);
+	@Procedure("SALES_TAX4")
+	public Map getSalesTax4(double subtotal);
 }

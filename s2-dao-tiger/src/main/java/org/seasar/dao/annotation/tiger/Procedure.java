@@ -13,24 +13,16 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.dao.annotation.tiger.impl;
+package org.seasar.dao.annotation.tiger;
 
-import org.seasar.dao.annotation.tiger.S2Dao;
-import org.seasar.dao.annotation.tiger.Sql;
-
-@S2Dao(bean=Employee5.class)
-public interface Employee7Dao {
-
-	/**
-	 * @return
-	 */
-	@Sql("SELECT COUNT(*) FROM emp")
-	public int getCount();
-	
-	/**
-	 * @param empno
-	 * @return
-	 */
-	@Sql("DELETE FROM emp WHERE empno=?")
-	public int deleteEmployee(int empno);
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+@Inherited
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface Procedure {
+	String value();
 }

@@ -8,7 +8,7 @@
   <artifactId>s2-dao-tiger-project</artifactId>
   <packaging>pom</packaging>
   <name>S2Dao Tiger Project</name>
-  <version>1.0.0</version>
+  <version>1.0.32</version>
   <description></description>
   <url>http://s2dao.seasar.org/</url>
   <inceptionYear>2005</inceptionYear>
@@ -62,8 +62,28 @@
             <target>1.5</target>
           </configuration>
         </plugin>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <configuration>
+            <updateReleaseInfo>true</updateReleaseInfo>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>source-jar</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
   <repositories>
     <repository>
@@ -74,16 +94,16 @@
   </repositories>
   <dependencies>
     <dependency>
-      <groupId>geronimo-spec</groupId>
-      <artifactId>geronimo-spec-j2ee</artifactId>
-      <version>1.4-rc4</version>
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-j2ee_1.4_spec</artifactId>
+      <version>1.0</version>
       <type>jar</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>geronimo-spec</groupId>
-      <artifactId>geronimo-spec-jta</artifactId>
-      <version>1.0.1B-rc4</version>
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-jta_1.0.1B_spec</artifactId>
+      <version>1.0</version>
       <type>jar</type>
       <scope>runtime</scope>
       <optional>true</optional>
@@ -98,13 +118,20 @@
     <dependency>
       <groupId>org.seasar.dao</groupId>
       <artifactId>s2-dao</artifactId>
-      <version>1.0.30</version>
+      <version>1.0.32</version>
       <type>jar</type>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
+      <type>jar</type>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <version>1.7.3.3</version>
       <type>jar</type>
       <scope>test</scope>
     </dependency>

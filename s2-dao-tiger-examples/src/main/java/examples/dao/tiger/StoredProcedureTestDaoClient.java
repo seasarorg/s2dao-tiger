@@ -15,38 +15,23 @@
  */
 package examples.dao.tiger;
 
-import java.util.List;
-
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.S2ContainerFactory;
 
-public class EmployeeDaoClient {
+public class StoredProcedureTestDaoClient {
 
-	private static final String PATH = "examples/dao/tiger/EmployeeDao.dicon";
+	private static final String PATH = "examples/dao/tiger/StoredProcedureTestDao.dicon";
 
 	public static void main(String[] args) {
 		S2Container container = S2ContainerFactory.create(PATH);
 		container.init();
 		try {
-			EmployeeDao dao = (EmployeeDao) container
-					.getComponent(EmployeeDao.class);
-			List employees = dao.getAllEmployees();
-			for (int i = 0; i < employees.size(); ++i) {
-				System.out.println(employees.get(i));
-			}
-			
-			Employee employee = dao.getEmployee(7788);
-			System.out.println(employee);
-			
-			int count = dao.getCount();
-			System.out.println("count:" + count);
-			
-			dao.getEmployeeByJobDeptno(null, null);
-			dao.getEmployeeByJobDeptno("CLERK", null);
-			dao.getEmployeeByJobDeptno(null, new Integer(20));
-			dao.getEmployeeByJobDeptno("CLERK", new Integer(20));
-			
-			System.out.println("updatedRows:" + dao.update(employee));
+			StoredProcedureTestDao dao = (StoredProcedureTestDao) container
+					.getComponent(StoredProcedureTestDao.class);
+			System.out.println("SALES_TAX(1000) =" + dao.getSalesTax(1000));
+			System.out.println("SALES_TAX2(1000) =" + dao.getSalesTax2(1000));
+			System.out.println("SALES_TAX3(1000) =" + dao.getSalesTax3(1000));
+			System.out.println("SALES_TAX4(1000) =" + dao.getSalesTax4(1000));
 		} finally {
 			container.destroy();
 		}
