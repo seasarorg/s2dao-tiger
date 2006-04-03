@@ -342,9 +342,12 @@ public abstract class DaoMetaDataImplTest extends S2TestCase {
 	}
 
 	public void testGetDaoInterface() throws Exception {
-		assertEquals("1", EmployeeDao.class, DaoMetaDataImpl
+		DaoMetaDataImpl dmd = new DaoMetaDataImpl(getDaoClass("EmployeeAutoDao"),
+				getDataSource(), BasicStatementFactory.INSTANCE,
+				BasicResultSetFactory.INSTANCE,readerFactory);
+		assertEquals("1", EmployeeDao.class, dmd
 				.getDaoInterface(EmployeeDao.class));
-		assertEquals("2", EmployeeDao.class, DaoMetaDataImpl
+		assertEquals("2", EmployeeDao.class, dmd
 				.getDaoInterface(EmployeeDaoImpl.class));
 	}
 

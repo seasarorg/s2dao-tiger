@@ -8,7 +8,7 @@
   <artifactId>s2-dao-tiger-project</artifactId>
   <packaging>pom</packaging>
   <name>S2Dao Tiger Project</name>
-  <version>1.0.31</version>
+  <version>1.0.32</version>
   <description></description>
   <url>http://s2dao.seasar.org/</url>
   <inceptionYear>2005</inceptionYear>
@@ -118,7 +118,7 @@
     <dependency>
       <groupId>org.seasar.dao</groupId>
       <artifactId>s2-dao</artifactId>
-      <version>1.0.31</version>
+      <version>1.0.32</version>
       <type>jar</type>
     </dependency>
     <dependency>
@@ -131,7 +131,7 @@
     <dependency>
       <groupId>hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
-      <version>1.7.2.2</version>
+      <version>1.7.3.3</version>
       <type>jar</type>
       <scope>test</scope>
     </dependency>
