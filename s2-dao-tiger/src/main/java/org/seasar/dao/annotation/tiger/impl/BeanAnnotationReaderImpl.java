@@ -18,6 +18,7 @@ package org.seasar.dao.annotation.tiger.impl;
 import java.lang.annotation.Annotation;
 
 import org.seasar.dao.BeanAnnotationReader;
+import org.seasar.dao.annotation.tiger.ValueType;
 import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.Column;
 import org.seasar.dao.annotation.tiger.Id;
@@ -96,5 +97,11 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
 		Relation rel = getPropertyAnnotation(Relation.class,pd);
 		return (rel!=null)?rel.relationKey():null;
 	}
+
+    public Class getValueType(PropertyDesc pd) {
+        ValueType valueType = (ValueType) getPropertyAnnotation(
+            ValueType.class, pd);
+        return (valueType != null) ? valueType.value() : null;
+    }
 
 }
