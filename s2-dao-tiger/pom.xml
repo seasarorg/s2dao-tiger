@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.seasar.dao</groupId>
     <artifactId>s2-dao-tiger-project</artifactId>
-    <version>1.0.32</version>
+    <version>1.0.33</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>s2-dao-tiger</artifactId>
@@ -14,7 +14,7 @@
   <name>S2Dao Tiger</name>
   <description></description>
   <url>http://s2dao.seasar.org/</url>
-    <dependencies>
+  <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
