@@ -98,7 +98,7 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
 		return (rel!=null)?rel.relationKey():null;
 	}
 
-    public Class getValueType(PropertyDesc pd) {
+    public String getValueType(PropertyDesc pd) {
         ValueType valueType = (ValueType) getPropertyAnnotation(
             ValueType.class, pd);
         return (valueType != null) ? valueType.value() : null;

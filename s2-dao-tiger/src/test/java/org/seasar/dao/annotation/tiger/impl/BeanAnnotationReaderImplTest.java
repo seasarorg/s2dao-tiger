@@ -34,10 +34,10 @@ public class BeanAnnotationReaderImplTest extends S2TestCase {
         BeanAnnotationReader annotationReader = new BeanAnnotationReaderImpl(
             clazz);
         PropertyDesc aaaPd = beanDesc.getPropertyDesc("aaa");
-        assertEquals(null, annotationReader.getValueType(aaaPd));
+        assertEquals((String) null, annotationReader.getValueType(aaaPd));
 
         PropertyDesc bbbPd = beanDesc.getPropertyDesc("bbb");
-        assertEquals(BigDecimalType.class, annotationReader.getValueType(bbbPd));
+        assertEquals("fooType", annotationReader.getValueType(bbbPd));
     }
 
     public static class AnnotationTestBean3 {
@@ -58,7 +58,7 @@ public class BeanAnnotationReaderImplTest extends S2TestCase {
             return bbb;
         }
 
-        @ValueType(BigDecimalType.class)
+        @ValueType("fooType")
         public void setBbb(String bbb) {
             this.bbb = bbb;
         }
