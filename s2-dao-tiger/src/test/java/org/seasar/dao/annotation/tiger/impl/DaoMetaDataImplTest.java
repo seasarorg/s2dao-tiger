@@ -29,7 +29,7 @@ import org.seasar.dao.impl.BeanMetaDataResultSetHandler;
 import org.seasar.dao.impl.DaoMetaDataImpl;
 import org.seasar.dao.impl.DeleteBatchAutoStaticCommand;
 import org.seasar.dao.impl.InsertAutoDynamicCommand;
-import org.seasar.dao.impl.InsertBatchAutoStaticCommand;
+import org.seasar.dao.impl.InsertBatchAutoDynamicCommand;
 import org.seasar.dao.impl.SelectDynamicCommand;
 import org.seasar.dao.impl.UpdateBatchAutoStaticCommand;
 import org.seasar.dao.impl.UpdateDynamicCommand;
@@ -44,7 +44,6 @@ import org.seasar.framework.beans.factory.BeanDescFactory;
  *  
  */
 public abstract class DaoMetaDataImplTest extends S2DaoTestCase {
-    protected AnnotationReaderFactory readerFactory;
 
     /**
      * Constructor for InvocationImplTest.
@@ -179,7 +178,7 @@ public abstract class DaoMetaDataImplTest extends S2DaoTestCase {
 
     public void testInsertBatchAuto() throws Exception {
         DaoMetaData dmd = createDaoMetaData(getDaoClass("EmployeeAutoDao"));
-        InsertBatchAutoStaticCommand cmd = (InsertBatchAutoStaticCommand) dmd
+        InsertBatchAutoDynamicCommand cmd = (InsertBatchAutoDynamicCommand) dmd
             .getSqlCommand("insertBatch");
         assertNotNull("1", cmd);
     }
