@@ -15,19 +15,15 @@
  */
 package org.seasar.dao.annotation.tiger.impl;
 
-import org.seasar.dao.AnnotationReaderFactory;
-import org.seasar.dao.BeanAnnotationReader;
-import org.seasar.dao.DaoAnnotationReader;
-import org.seasar.framework.beans.BeanDesc;
+import org.seasar.dao.annotation.tiger.S2Dao;
 
-public class AnnotationReaderFactoryImpl implements AnnotationReaderFactory {
+@S2Dao(bean=Employee.class)
+public interface Employee8Manager {
 
-    public DaoAnnotationReader createDaoAnnotationReader(BeanDesc daoBeanDesc) {
-        return new DaoAnnotationReaderImpl(daoBeanDesc);
-    }
+    public void terminate(Employee employee);
 
-    public BeanAnnotationReader createBeanAnnotationReader(Class beanClass) {
-        return new BeanAnnotationReaderImpl(beanClass);
-    }
-
+    public void change(Employee employee);
+    
+    public void generate(Employee employee);
+    
 }

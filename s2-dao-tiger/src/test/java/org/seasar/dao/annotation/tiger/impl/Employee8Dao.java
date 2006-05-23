@@ -15,19 +15,23 @@
  */
 package org.seasar.dao.annotation.tiger.impl;
 
-import org.seasar.dao.AnnotationReaderFactory;
-import org.seasar.dao.BeanAnnotationReader;
-import org.seasar.dao.DaoAnnotationReader;
-import org.seasar.framework.beans.BeanDesc;
+import java.util.List;
 
-public class AnnotationReaderFactoryImpl implements AnnotationReaderFactory {
+import org.seasar.dao.annotation.tiger.Query;
+import org.seasar.dao.annotation.tiger.S2Dao;
 
-    public DaoAnnotationReader createDaoAnnotationReader(BeanDesc daoBeanDesc) {
-        return new DaoAnnotationReaderImpl(daoBeanDesc);
-    }
+@S2Dao(bean=Employee.class)
+public interface Employee8Dao {
 
-    public BeanAnnotationReader createBeanAnnotationReader(Class beanClass) {
-        return new BeanAnnotationReaderImpl(beanClass);
-    }
+    public static String getEmployees_QUERY = "/*BEGIN*/ WHERE "
+            + "/*IF dto.ename != null*/ ename = /*dto.ename*/'aaa'/*END*/"
+            + "/*IF dto.job != null*/ AND job = /*dto.job*/'bbb'/*END*/"
+            + " /*END*/";
+
+    @Query("/*BEGIN*/ WHERE "
+        + "/*IF dto.ename != null*/ ename = /*dto.ename*/'aaa'/*END*/"
+        + "/*IF dto.job != null*/ AND job = /*dto.job*/'bbb'/*END*/"
+        + " /*END*/")
+    public List getEmployees(Employee employee);
 
 }

@@ -21,19 +21,6 @@ package org.seasar.dao.annotation.tiger.impl;
  */
 public class AnnotationDaoMetaDataImplTest extends DaoMetaDataImplTest {
 
-    /**
-     * Constructor for InvocationImplTest.
-     * 
-     * @param arg0
-     */
-    public AnnotationDaoMetaDataImplTest(String arg0) {
-        super(arg0);
-    }
-
-    public static void main(String[] args) {
-        junit.textui.TestRunner.run(AnnotationDaoMetaDataImplTest.class);
-    }
-
     public void setUp() {
         include("AnnotationDaoMetaDataImplTest.dicon");
     }
@@ -79,6 +66,10 @@ public class AnnotationDaoMetaDataImplTest extends DaoMetaDataImplTest {
             return Employee6Dao.class;
         } else if (className.equals("Employee7Dao")) {
             return Employee7Dao.class;
+        } else if (className.equals("Employee8Dao")) {
+            return Employee8Dao.class;
+        } else if (className.equals("Employee8Manager")) {
+            return Employee8Manager.class;
         } else if (className.equals("DepartmentTotalSalaryDao")) {
             return DepartmentTotalSalaryDao.class;
         }

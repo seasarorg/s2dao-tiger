@@ -25,49 +25,88 @@ import org.seasar.dao.annotation.tiger.Procedure;
 import org.seasar.dao.annotation.tiger.Query;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;
+import org.seasar.dao.util.ImplementInterfaceWalker;
+import org.seasar.dao.util.ImplementInterfaceWalker.Status;
 import org.seasar.framework.beans.BeanDesc;
 
 public class DaoAnnotationReaderImpl implements DaoAnnotationReader {
-	private BeanDesc daoBeanDesc_;
-	private Class daoClass_;
-	public DaoAnnotationReaderImpl(BeanDesc daoBeanDesc) {
-		daoBeanDesc_ = daoBeanDesc;
-		daoClass_ = daoBeanDesc.getBeanClass();
-	}
-	public String getQuery(Method method) {
-		Query query = method.getAnnotation(Query.class);
-		return (query!=null)?query.value():null;
-	}
-	public String getStoredProcedureName(Method method) {
-		Procedure procedure = method.getAnnotation(Procedure.class);
-		return (procedure!=null)?procedure.value():null;
-	}
 
-	public String[] getArgNames(Method method) {
-		Arguments arg = method.getAnnotation(Arguments.class);
-		return (arg!=null)?arg.value():new String[0];
-	}
-	public Class getBeanClass() {
-		if(daoClass_.isAnnotationPresent(S2Dao.class)){
-			S2Dao s2dao = (S2Dao) daoClass_.getAnnotation(S2Dao.class);
-			return s2dao.bean();
-		}
-		return null;
-	}
+    private BeanDesc daoBeanDesc_;
+    private Class daoClass_;
 
-	public String[] getNoPersistentProps(Method method) {
-		NoPersistentProperty npp = method.getAnnotation(NoPersistentProperty.class);
-		return (npp!=null)?npp.value():null;
-	}
+    public DaoAnnotationReaderImpl(BeanDesc daoBeanDesc) {
+        daoBeanDesc_ = daoBeanDesc;
+        daoClass_ = daoBeanDesc.getBeanClass();
+    }
 
-	public String[] getPersistentProps(Method method) {
-		PersistentProperty pp = (PersistentProperty) method.getAnnotation(PersistentProperty.class);
-		return (pp!=null)?pp.value():null;
-	}
+    public String getQuery(Method method) {
+        Query query = method.getAnnotation(Query.class);
+        return (query != null) ? query.value() : null;
+    }
 
-	public String getSQL(Method method, String suffix) {
-		Sql sql = method.getAnnotation(Sql.class);
-		return (sql!=null)?sql.value():null;
-	}
+    public String getStoredProcedureName(Method method) {
+        Procedure procedure = method.getAnnotation(Procedure.class);
+        return (procedure != null) ? procedure.value() : null;
+    }
+
+    public String[] getArgNames(Method method) {
+        Arguments arg = method.getAnnotation(Arguments.class);
+        return (arg != null) ? arg.value() : new String[0];
+    }
+
+    public Class getBeanClass() {
+        return getBeanClass0(daoClass_);
+    }
+
+    private static Class getBeanClassFromDao(Class daoClass) {
+        if (daoClass.isAnnotationPresent(S2Dao.class)) {
+            S2Dao s2dao = (S2Dao) daoClass.getAnnotation(S2Dao.class);
+            return s2dao.bean();
+        }
+        return null;
+    }
+
+    private Class getBeanClass0(Class daoClass) {
+        final Class beanClass = getBeanClassFromDao(daoClass);
+        if (beanClass != null) {
+            return beanClass;
+        }
+
+        HandlerImpl handlerImpl = new HandlerImpl();
+        ImplementInterfaceWalker.walk(daoClass, handlerImpl);
+        return handlerImpl.foundBeanClass;
+    }
+
+    private static class HandlerImpl implements
+        ImplementInterfaceWalker.Handler {
+
+        Class foundBeanClass;
+
+        public Status accept(Class ifs) {
+            final Class beanClass = getBeanClassFromDao(ifs);
+            if (beanClass != null) {
+                foundBeanClass = beanClass;
+                return ImplementInterfaceWalker.BREAK;
+            }
+            return ImplementInterfaceWalker.CONTINUE;
+        }
+    }
+
+    public String[] getNoPersistentProps(Method method) {
+        NoPersistentProperty npp = method
+            .getAnnotation(NoPersistentProperty.class);
+        return (npp != null) ? npp.value() : null;
+    }
+
+    public String[] getPersistentProps(Method method) {
+        PersistentProperty pp = (PersistentProperty) method
+            .getAnnotation(PersistentProperty.class);
+        return (pp != null) ? pp.value() : null;
+    }
+
+    public String getSQL(Method method, String suffix) {
+        Sql sql = method.getAnnotation(Sql.class);
+        return (sql != null) ? sql.value() : null;
+    }
 
 }

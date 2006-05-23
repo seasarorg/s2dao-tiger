@@ -118,7 +118,7 @@
     <dependency>
       <groupId>org.seasar.dao</groupId>
       <artifactId>s2-dao</artifactId>
-      <version>1.0.34</version>
+      <version>1.0.35-SNAPSHOT</version>
       <type>jar</type>
     </dependency>
     <dependency>
