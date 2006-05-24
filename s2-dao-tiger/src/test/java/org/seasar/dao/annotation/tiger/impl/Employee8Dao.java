@@ -23,11 +23,6 @@ import org.seasar.dao.annotation.tiger.S2Dao;
 @S2Dao(bean=Employee.class)
 public interface Employee8Dao {
 
-    public static String getEmployees_QUERY = "/*BEGIN*/ WHERE "
-            + "/*IF dto.ename != null*/ ename = /*dto.ename*/'aaa'/*END*/"
-            + "/*IF dto.job != null*/ AND job = /*dto.job*/'bbb'/*END*/"
-            + " /*END*/";
-
     @Query("/*BEGIN*/ WHERE "
         + "/*IF dto.ename != null*/ ename = /*dto.ename*/'aaa'/*END*/"
         + "/*IF dto.job != null*/ AND job = /*dto.job*/'bbb'/*END*/"
