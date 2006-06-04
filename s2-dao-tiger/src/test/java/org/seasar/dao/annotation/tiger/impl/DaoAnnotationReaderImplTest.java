@@ -15,6 +15,8 @@
  */
 package org.seasar.dao.annotation.tiger.impl;
 
+import java.lang.reflect.Method;
+
 import junit.framework.TestCase;
 
 import org.seasar.dao.DaoMetaDataFactory;
@@ -39,6 +41,10 @@ public class DaoAnnotationReaderImplTest extends TestCase {
         final BeanDesc daoDesc = BeanDescFactory.getBeanDesc(AaaDao.class);
         DaoAnnotationReaderImpl reader = new DaoAnnotationReaderImpl(daoDesc);
         assertEquals(Aaa.class, reader.getBeanClass());
+
+        String query = reader.getQuery(AaaDao.class.getMethod("getAaaById2",
+            new Class[] { int.class }));
+        assertEquals("A > B", query);
     }
 
     protected void setUp() throws Exception {
