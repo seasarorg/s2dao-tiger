@@ -14,6 +14,19 @@
   <name>S2Dao Tiger Examples</name>
   <description></description>
   <url>http://s2dao.seasar.org/</url>
+  <build>
+    <testResources>
+      <testResource>
+        <directory>${basedir}/src/test/resources</directory>
+      </testResource>
+      <testResource>
+        <directory>${basedir}/../s2-dao-tiger/src/test/resources</directory>
+        <includes>
+          <include>data/**</include>
+        </includes>
+      </testResource>
+    </testResources>
+  </build>
   <dependencies>
     <dependency>
       <groupId>org.seasar.dao</groupId>
