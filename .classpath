@@ -6,6 +6,8 @@
 	<classpathentry output="s2-dao-tiger/target/test-classes" kind="src" path="s2-dao-tiger/src/test/resources"/>
 	<classpathentry output="s2-dao-tiger-examples/target/classes" kind="src" path="s2-dao-tiger-examples/src/main/java"/>
 	<classpathentry output="s2-dao-tiger-examples/target/classes" kind="src" path="s2-dao-tiger-examples/src/main/resources"/>
+	<classpathentry output="s2-dao-tiger-examples/target/test-classes" kind="src" path="s2-dao-tiger-examples/src/test/java"/>
+	<classpathentry output="s2-dao-tiger-examples/target/test-classes" kind="src" path="s2-dao-tiger-examples/src/test/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.5.0_06"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/s2dao"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/seasar2"/>
