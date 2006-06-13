@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 import org.seasar.dao.annotation.tiger.Bean;
 
-@Bean(table="DEPT")
+@Bean(table = "DEPT")
 public class Department implements Serializable {
 
     private int deptno;
@@ -27,7 +27,7 @@ public class Department implements Serializable {
     private String dname;
 
     private String loc;
-    
+
     private int versionNo;
 
     public Department() {
@@ -56,7 +56,7 @@ public class Department implements Serializable {
     public void setLoc(java.lang.String loc) {
         this.loc = loc;
     }
-    
+
     public int getVersionNo() {
         return this.versionNo;
     }
@@ -66,18 +66,19 @@ public class Department implements Serializable {
     }
 
     public boolean equals(Object other) {
-        if ( !(other instanceof Department) ) return false;
+        if (!(other instanceof Department))
+            return false;
         Department castOther = (Department) other;
         return this.getDeptno() == castOther.getDeptno();
     }
-    
+
     public String toString() {
-    	StringBuffer buf = new StringBuffer();
-    	buf.append(deptno).append(", ");
-		buf.append(dname).append(", ");
-		buf.append(loc).append(", ");
-		buf.append(versionNo);
-    	return buf.toString();
+        StringBuffer buf = new StringBuffer();
+        buf.append(deptno).append(", ");
+        buf.append(dname).append(", ");
+        buf.append(loc).append(", ");
+        buf.append(versionNo);
+        return buf.toString();
     }
 
     public int hashCode() {

@@ -44,9 +44,9 @@ public class BeanAnnotationReaderImplTest extends TestCase {
         BeanDesc beanDesc = BeanDescFactory.getBeanDesc(clazz);
         BeanAnnotationReader reader = createBeanAnnotationReader(clazz);
         assertEquals("1", "Cprop1", reader.getColumnAnnotation(beanDesc
-            .getPropertyDesc("prop1")));
+                .getPropertyDesc("prop1")));
         assertEquals("2", (String) null, reader.getColumnAnnotation(beanDesc
-            .getPropertyDesc("prop2")));
+                .getPropertyDesc("prop2")));
     }
 
     public void testGetTableAnnotation() {
@@ -110,7 +110,7 @@ public class BeanAnnotationReaderImplTest extends TestCase {
         assertEquals("1", 0, reader1.getRelationNo(pd));
         assertEquals("1", "DEPTNUM:DEPTNO", reader1.getRelationKey(pd));
         assertFalse("1", reader1.hasRelationNo(beanDesc
-            .getPropertyDesc("prop2")));
+                .getPropertyDesc("prop2")));
     }
 
     public void testGetValueType() throws Exception {

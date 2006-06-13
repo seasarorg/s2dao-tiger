@@ -25,6 +25,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Id {
-	IdType value() default IdType.ASSIGNED;
-	String sequenceName() default "";
+    IdType value() default IdType.ASSIGNED;
+
+    String sequenceName() default "";
 }

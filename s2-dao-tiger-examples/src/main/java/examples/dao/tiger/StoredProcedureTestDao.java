@@ -20,15 +20,17 @@ import java.util.Map;
 import org.seasar.dao.annotation.tiger.Procedure;
 import org.seasar.dao.annotation.tiger.S2Dao;
 
-
-@S2Dao(bean=Employee.class)
+@S2Dao(bean = Employee.class)
 public interface StoredProcedureTestDao {
-	@Procedure("SALES_TAX")
-	public double getSalesTax(double subtotal);
-	@Procedure("SALES_TAX2")
-	public double getSalesTax2(double subtotal);
-	@Procedure("SALES_TAX3")
-	public double getSalesTax3(double subtotal);
-	@Procedure("SALES_TAX4")
-	public Map getSalesTax4(double subtotal);
+    @Procedure("SALES_TAX")
+    public double getSalesTax(double subtotal);
+
+    @Procedure("SALES_TAX2")
+    public double getSalesTax2(double subtotal);
+
+    @Procedure("SALES_TAX3")
+    public double getSalesTax3(double subtotal);
+
+    @Procedure("SALES_TAX4")
+    public Map getSalesTax4(double subtotal);
 }

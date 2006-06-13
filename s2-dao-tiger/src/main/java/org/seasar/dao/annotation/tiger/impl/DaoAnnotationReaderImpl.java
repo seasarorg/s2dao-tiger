@@ -32,6 +32,7 @@ import org.seasar.framework.beans.BeanDesc;
 public class DaoAnnotationReaderImpl implements DaoAnnotationReader {
 
     private BeanDesc daoBeanDesc_;
+
     private Class daoClass_;
 
     public DaoAnnotationReaderImpl(BeanDesc daoBeanDesc) {
@@ -78,7 +79,7 @@ public class DaoAnnotationReaderImpl implements DaoAnnotationReader {
     }
 
     private static class HandlerImpl implements
-        ImplementInterfaceWalker.Handler {
+            ImplementInterfaceWalker.Handler {
 
         Class foundBeanClass;
 
@@ -94,13 +95,13 @@ public class DaoAnnotationReaderImpl implements DaoAnnotationReader {
 
     public String[] getNoPersistentProps(Method method) {
         NoPersistentProperty npp = method
-            .getAnnotation(NoPersistentProperty.class);
+                .getAnnotation(NoPersistentProperty.class);
         return (npp != null) ? npp.value() : null;
     }
 
     public String[] getPersistentProps(Method method) {
         PersistentProperty pp = (PersistentProperty) method
-            .getAnnotation(PersistentProperty.class);
+                .getAnnotation(PersistentProperty.class);
         return (pp != null) ? pp.value() : null;
     }
 

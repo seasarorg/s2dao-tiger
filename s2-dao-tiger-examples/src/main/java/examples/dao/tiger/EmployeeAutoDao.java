@@ -20,29 +20,30 @@ import java.util.List;
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.Query;
 import org.seasar.dao.annotation.tiger.S2Dao;
+
 /**
  * 
- * @author è„å¥Å@åcéO
+ * @author ÔøΩ„å¥ÔøΩ@ÔøΩcÔøΩO
  * 
  */
-@S2Dao(bean=Employee.class)
+@S2Dao(bean = Employee.class)
 public interface EmployeeAutoDao {
 
-	public List getAllEmployees();
+    public List getAllEmployees();
 
-	@Arguments({"job","deptno"})
-	public List getEmployeeByJobDeptno(String job, Integer deptno);
-	
-	@Arguments({"empno"})
-	public Employee getEmployeeByEmpno(int empno);
+    @Arguments( { "job", "deptno" })
+    public List getEmployeeByJobDeptno(String job, Integer deptno);
 
-	@Query("sal BETWEEN ? AND ? ORDER BY empno")
-	public List getEmployeesBySal(float minSal, float maxSal);
+    @Arguments( { "empno" })
+    public Employee getEmployeeByEmpno(int empno);
 
-	@Arguments({"dname_0"})
-	public List getEmployeeByDname(String dname);
-	
-	public List getEmployeesBySearchCondition(EmployeeSearchCondition dto);
-	
-	public void update(Employee employee);
+    @Query("sal BETWEEN ? AND ? ORDER BY empno")
+    public List getEmployeesBySal(float minSal, float maxSal);
+
+    @Arguments( { "dname_0" })
+    public List getEmployeeByDname(String dname);
+
+    public List getEmployeesBySearchCondition(EmployeeSearchCondition dto);
+
+    public void update(Employee employee);
 }

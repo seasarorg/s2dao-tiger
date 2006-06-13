@@ -21,9 +21,8 @@ import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.Column;
 import org.seasar.dao.annotation.tiger.Relation;
 
-@Bean(table="EMP")
+@Bean(table = "EMP")
 public class Employee3 implements Serializable {
-	
 
     private Long empno;
 
@@ -40,7 +39,7 @@ public class Employee3 implements Serializable {
     private Float comm;
 
     private Integer deptno;
-    
+
     private Department department;
 
     public Employee3() {
@@ -78,7 +77,7 @@ public class Employee3 implements Serializable {
         return this.mgr;
     }
 
-	@Column("mgr")
+    @Column("mgr")
     public void setManager(Short mgr) {
         this.mgr = mgr;
     }
@@ -114,18 +113,19 @@ public class Employee3 implements Serializable {
     public void setDeptno(Integer deptno) {
         this.deptno = deptno;
     }
-	
-	@Relation(relationNo=0)
+
+    @Relation(relationNo = 0)
     public Department getDepartment() {
-    	return this.department;
+        return this.department;
     }
-    
+
     public void setDepartment(Department department) {
-    	this.department = department;
+        this.department = department;
     }
 
     public boolean equals(Object other) {
-        if ( !(other instanceof Employee3) ) return false;
+        if (!(other instanceof Employee3))
+            return false;
         Employee3 castOther = (Employee3) other;
         return this.getEmpno() == castOther.getEmpno();
     }
@@ -133,18 +133,18 @@ public class Employee3 implements Serializable {
     public int hashCode() {
         return this.getEmpno().hashCode();
     }
-    
+
     public String toString() {
-    	StringBuffer buf = new StringBuffer();
-    	buf.append(empno).append(", ");
-		buf.append(ename).append(", ");
-		buf.append(job).append(", ");
-		buf.append(mgr).append(", ");
-		buf.append(hiredate).append(", ");
-		buf.append(sal).append(", ");
-		buf.append(comm).append(", ");
-		buf.append(deptno).append(" {");
-		buf.append(department).append("}");
-    	return buf.toString();
+        StringBuffer buf = new StringBuffer();
+        buf.append(empno).append(", ");
+        buf.append(ename).append(", ");
+        buf.append(job).append(", ");
+        buf.append(mgr).append(", ");
+        buf.append(hiredate).append(", ");
+        buf.append(sal).append(", ");
+        buf.append(comm).append(", ");
+        buf.append(deptno).append(" {");
+        buf.append(department).append("}");
+        return buf.toString();
     }
 }

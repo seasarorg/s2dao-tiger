@@ -15,8 +15,6 @@
  */
 package org.seasar.dao.annotation.tiger.impl;
 
-import java.lang.reflect.Method;
-
 import junit.framework.TestCase;
 
 import org.seasar.dao.DaoMetaDataFactory;
@@ -43,14 +41,14 @@ public class DaoAnnotationReaderImplTest extends TestCase {
         assertEquals(Aaa.class, reader.getBeanClass());
 
         String query = reader.getQuery(AaaDao.class.getMethod("getAaaById2",
-            new Class[] { int.class }));
+                new Class[] { int.class }));
         assertEquals("A > B", query);
     }
 
     protected void setUp() throws Exception {
         super.setUp();
         BeanDesc daoDesc = BeanDescFactory
-            .getBeanDesc(AbstractAaaDaoImpl.class);
+                .getBeanDesc(AbstractAaaDaoImpl.class);
         annotationReader = new DaoAnnotationReaderImpl(daoDesc);
     }
 
@@ -60,20 +58,20 @@ public class DaoAnnotationReaderImplTest extends TestCase {
 
     public void testQuery() throws Exception {
         String query = annotationReader.getQuery(AbstractAaaDaoImpl.class
-            .getMethod("getAaaById2", new Class[] { int.class }));
+                .getMethod("getAaaById2", new Class[] { int.class }));
         assertEquals("A > B", query);
     }
 
     public void testSql() throws Exception {
         String sql = annotationReader.getSQL(AbstractAaaDaoImpl.class
-            .getMethod("getAaaById3", new Class[] { int.class }), null);
+                .getMethod("getAaaById3", new Class[] { int.class }), null);
         assertEquals("SELECT * FROM AAA", sql);
     }
 
     public void testArgNames() throws Exception {
         String[] argNames = annotationReader
-            .getArgNames(AbstractAaaDaoImpl.class.getMethod("getAaaById1",
-                new Class[] { int.class }));
+                .getArgNames(AbstractAaaDaoImpl.class.getMethod("getAaaById1",
+                        new Class[] { int.class }));
         assertEquals(2, argNames.length);
         assertEquals("aaa1", argNames[0]);
         assertEquals("aaa2", argNames[1]);
@@ -81,16 +79,16 @@ public class DaoAnnotationReaderImplTest extends TestCase {
 
     public void testNoPersistentProps() throws Exception {
         final String[] noPersistentProps = annotationReader
-            .getNoPersistentProps(AbstractAaaDaoImpl.class.getMethod(
-                "createAaa1", new Class[] { Aaa.class }));
+                .getNoPersistentProps(AbstractAaaDaoImpl.class.getMethod(
+                        "createAaa1", new Class[] { Aaa.class }));
         assertEquals(1, noPersistentProps.length);
         assertEquals("abc", noPersistentProps[0]);
     }
 
     public void testPersistentProps() throws Exception {
         final String[] persistentProps = annotationReader
-            .getPersistentProps(AbstractAaaDaoImpl.class.getMethod(
-                "createAaa2", new Class[] { Aaa.class }));
+                .getPersistentProps(AbstractAaaDaoImpl.class.getMethod(
+                        "createAaa2", new Class[] { Aaa.class }));
         assertEquals(1, persistentProps.length);
         assertEquals("def", persistentProps[0]);
     }
@@ -119,7 +117,7 @@ public class DaoAnnotationReaderImplTest extends TestCase {
     }
 
     public static abstract class AbstractAaaDaoImpl extends AbstractDao
-        implements Aaa2Dao {
+            implements Aaa2Dao {
 
         public AbstractAaaDaoImpl(DaoMetaDataFactory daoMetaDataFactory) {
             super(daoMetaDataFactory);

@@ -19,14 +19,14 @@ import org.seasar.dao.DaoMetaDataFactory;
 import org.seasar.dao.impl.AbstractDao;
 
 public abstract class EmployeeDaoImpl extends AbstractDao implements
-		EmployeeDao {
+        EmployeeDao {
 
-	public EmployeeDaoImpl(DaoMetaDataFactory factory) {
-		super(factory);
-	}
+    public EmployeeDaoImpl(DaoMetaDataFactory factory) {
+        super(factory);
+    }
 
-	public Employee[] getEmployeesByDeptno(int deptno) {
-		return (Employee[]) getEntityManager().findArray("deptno = ?",
-				new Integer(deptno));
-	}
+    public Employee[] getEmployeesByDeptno(int deptno) {
+        return (Employee[]) getEntityManager().findArray("deptno = ?",
+                new Integer(deptno));
+    }
 }

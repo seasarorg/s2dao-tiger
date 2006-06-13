@@ -20,13 +20,13 @@ import java.util.List;
 import org.seasar.dao.annotation.tiger.Query;
 import org.seasar.dao.annotation.tiger.S2Dao;
 
-@S2Dao(bean=Employee.class)
+@S2Dao(bean = Employee.class)
 public interface Employee8Dao {
 
     @Query("/*BEGIN*/ WHERE "
-        + "/*IF dto.ename != null*/ ename = /*dto.ename*/'aaa'/*END*/"
-        + "/*IF dto.job != null*/ AND job = /*dto.job*/'bbb'/*END*/"
-        + " /*END*/")
+            + "/*IF dto.ename != null*/ ename = /*dto.ename*/'aaa'/*END*/"
+            + "/*IF dto.job != null*/ AND job = /*dto.job*/'bbb'/*END*/"
+            + " /*END*/")
     public List getEmployees(Employee employee);
 
 }

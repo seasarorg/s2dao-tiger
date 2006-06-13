@@ -17,7 +17,7 @@ package org.seasar.dao.annotation.tiger.impl;
 
 /**
  * @author higa
- *  
+ * 
  */
 public class AnnotationDaoMetaDataImplTest extends DaoMetaDataImplTest {
 

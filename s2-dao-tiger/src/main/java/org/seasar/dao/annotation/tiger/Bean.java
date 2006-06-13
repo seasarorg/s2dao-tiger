@@ -25,8 +25,11 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Bean {
-	String table() default "";
-	String[] noPersistentProperty() default {};
-	String versionNoProperty() default "versionNo";
-	String timeStampProperty() default "timestamp";
+    String table() default "";
+
+    String[] noPersistentProperty() default {};
+
+    String versionNoProperty() default "versionNo";
+
+    String timeStampProperty() default "timestamp";
 }

@@ -17,13 +17,13 @@ package org.seasar.dao.annotation.tiger.impl;
 
 import org.seasar.dao.annotation.tiger.S2Dao;
 
-@S2Dao(bean=Employee.class)
+@S2Dao(bean = Employee.class)
 public interface Employee8Manager {
 
     public void terminate(Employee employee);
 
     public void change(Employee employee);
-    
+
     public void generate(Employee employee);
-    
+
 }
