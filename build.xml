@@ -5,7 +5,9 @@
 		<mkdir dir="target"/>
 		<zip zipfile="target/s2-dao-tiger-${ver}.zip">
 			<zipfileset prefix="s2dao-tiger" dir=".">
+				<exclude name="**/build/**"/>
 				<exclude name="**/target/**"/>
+				<exclude name="*.log"/>
 				<exclude name="**/.settings/**"/>
 			</zipfileset>
 			<zipfileset prefix="s2dao-tiger/lib" 
