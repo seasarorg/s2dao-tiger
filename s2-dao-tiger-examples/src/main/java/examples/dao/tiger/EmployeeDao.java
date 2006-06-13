@@ -23,7 +23,7 @@ import org.seasar.dao.annotation.tiger.Sql;
 
 /**
  * 
- * @author �㌴�@�c�O
+ * @author 上原　慶三
  */
 @S2Dao(bean = Employee.class)
 public interface EmployeeDao {

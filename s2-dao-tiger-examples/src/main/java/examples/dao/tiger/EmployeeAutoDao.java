@@ -23,7 +23,7 @@ import org.seasar.dao.annotation.tiger.S2Dao;
 
 /**
  * 
- * @author �㌴�@�c�O
+ * @author 上原　慶三�c�O
  * 
  */
 @S2Dao(bean = Employee.class)
