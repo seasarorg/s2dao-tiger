@@ -15,17 +15,22 @@
  */
 package org.seasar.dao.annotation.tiger.impl;
 
-import java.util.List;
-
+import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.S2Dao;
-import org.seasar.dao.annotation.tiger.Sql;
 
-@S2Dao(bean = Employee2.class)
-public interface Employee2Dao {
+/**
+ * @author manhole
+ */
+@S2Dao(bean = Employee9.class)
+public interface Employee9Dao {
 
-    public List getAllEmployees();
+    public int insert(Employee9 employee);
 
-    @Sql("SELECT ename, deptnum, empno FROM EMP2")
-    public List getAllEmployeesOnly();
+    public int update(Employee9 employee);
+
+    public int findBy(Employee9 employee);
+
+    @Arguments("eName")
+    public int findByEname(String ename);
 
 }

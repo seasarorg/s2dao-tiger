@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.seasar.dao</groupId>
     <artifactId>s2-dao-tiger-project</artifactId>
-    <version>1.0.35</version>
+    <version>1.0.36-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>s2-dao-tiger</artifactId>
@@ -15,17 +15,17 @@
   <description></description>
   <url>http://s2dao.seasar.org/</url>
   <dependencies>
+    <!--
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <type>jar</type>
     </dependency>
-    <!--
     <dependency>
       <groupId>org.seasar.dao</groupId>
       <artifactId>s2-dao</artifactId>
-      <version>1.0.35</version>
+      <version>1.0.36-SNAPSHOT</version>
       <type>test-jar</type>
     </dependency>
     -->

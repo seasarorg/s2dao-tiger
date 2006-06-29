@@ -15,6 +15,8 @@
  */
 package org.seasar.dao.annotation.tiger.impl;
 
+import org.seasar.dao.impl.DaoMetaDataImplTest;
+
 /**
  * @author higa
  * 
@@ -25,25 +27,27 @@ public class AnnotationDaoMetaDataImplTest extends DaoMetaDataImplTest {
         include("AnnotationDaoMetaDataImplTest.dicon");
     }
 
+    protected Class getBeanClass(String className) {
+        if (className.equals("Employee")) {
+            return Employee.class;
+        }
+        fail(className);
+        return null;
+    }
+
     protected Object getBean(String className) {
         if (className.equals("Employee")) {
             return new Employee();
         } else if (className.equals("Employee3")) {
             return new Employee3();
+        } else if (className.equals("Employee9")) {
+            return new Employee9();
         } else if (className.equals("EmployeeSearchCondition")) {
             return new EmployeeSearchCondition();
         } else if (className.equals("Department")) {
             return new Department();
         }
-        fail();
-        return null;
-    }
-
-    protected Class getBeanClass(String className) {
-        if (className.equals("Employee")) {
-            return Employee.class;
-        }
-        fail();
+        fail(className);
         return null;
     }
 
@@ -68,10 +72,16 @@ public class AnnotationDaoMetaDataImplTest extends DaoMetaDataImplTest {
             return Employee7Dao.class;
         } else if (className.equals("Employee8Dao")) {
             return Employee8Dao.class;
+        } else if (className.equals("Employee9Dao")) {
+            return Employee9Dao.class;
         } else if (className.equals("Employee8Manager")) {
             return Employee8Manager.class;
         } else if (className.equals("DepartmentTotalSalaryDao")) {
             return DepartmentTotalSalaryDao.class;
+        } else if (className.equals("EmployeeDaoImpl")) {
+            return EmployeeDaoImpl.class;
+        } else if (className.equals("EmployeeExDao")) {
+            return EmployeeExDao.class;
         }
         fail();
         return null;
