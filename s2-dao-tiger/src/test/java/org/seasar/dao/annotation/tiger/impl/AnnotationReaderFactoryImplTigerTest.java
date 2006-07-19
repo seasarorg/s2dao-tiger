@@ -17,9 +17,9 @@ package org.seasar.dao.annotation.tiger.impl;
 
 import junit.framework.TestCase;
 
+import org.seasar.dao.AnnotationReaderFactory;
 import org.seasar.dao.BeanAnnotationReader;
 import org.seasar.dao.DaoAnnotationReader;
-import org.seasar.dao.impl.AnnotationReaderFactoryImpl;
 import org.seasar.dao.impl.Employee;
 import org.seasar.dao.impl.EmployeeDao;
 import org.seasar.framework.beans.BeanDesc;
@@ -30,16 +30,18 @@ import org.seasar.framework.beans.factory.BeanDescFactory;
  */
 public class AnnotationReaderFactoryImplTigerTest extends TestCase {
 
-    private AnnotationReaderFactoryImpl tigerAnnotationReaderFactory;
+    private AnnotationReaderFactory tigerAnnotationReaderFactory;
+
+    private AnnotationReaderFactory annotationReaderFactory;
 
     protected void setUp() throws Exception {
         super.setUp();
         tigerAnnotationReaderFactory = new AnnotationReaderFactoryImpl();
+        annotationReaderFactory = new org.seasar.dao.impl.AnnotationReaderFactoryImpl();
     }
 
     public void testBeanAnnotationReader() throws Exception {
         // ## Arrange ##
-        AnnotationReaderFactoryImpl annotationReaderFactory = new AnnotationReaderFactoryImpl();
         final Class beanClass = Employee.class;
 
         // ## Act ##
@@ -53,7 +55,6 @@ public class AnnotationReaderFactoryImplTigerTest extends TestCase {
 
     public void testDaoAnnotationReader() throws Exception {
         // ## Arrange ##
-        AnnotationReaderFactoryImpl annotationReaderFactory = new AnnotationReaderFactoryImpl();
         final BeanDesc daoBeanDesc = BeanDescFactory
                 .getBeanDesc(EmployeeDao.class);
 
