@@ -19,7 +19,7 @@ import org.seasar.dao.impl.DaoMetaDataImplTest;
 
 /**
  * @author higa
- * 
+ * @author manhole
  */
 public class AnnotationDaoMetaDataImplTest extends DaoMetaDataImplTest {
 
@@ -74,6 +74,8 @@ public class AnnotationDaoMetaDataImplTest extends DaoMetaDataImplTest {
             return Employee8Dao.class;
         } else if (className.equals("Employee9Dao")) {
             return Employee9Dao.class;
+        } else if (className.equals("Employee10Dao")) {
+            return Employee10Dao.class;
         } else if (className.equals("Employee8Manager")) {
             return Employee8Manager.class;
         } else if (className.equals("DepartmentTotalSalaryDao")) {
