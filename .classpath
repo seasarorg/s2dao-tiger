@@ -8,7 +8,7 @@
 	<classpathentry output="build/s2-dao-tiger-examples/classes" kind="src" path="s2-dao-tiger-examples/src/main/resources"/>
 	<classpathentry output="build/s2-dao-tiger-examples/test-classes" kind="src" path="s2-dao-tiger-examples/src/test/java"/>
 	<classpathentry output="build/s2-dao-tiger-examples/test-classes" kind="src" path="s2-dao-tiger-examples/src/test/resources"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/s2dao"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/s2dao-1.0.x"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/seasar2"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="build/s2-dao-tiger/classes"/>
