@@ -8,7 +8,7 @@
   <artifactId>s2-dao-tiger-project</artifactId>
   <packaging>pom</packaging>
   <name>S2Dao Tiger Project</name>
-  <version>1.0.37-SNAPSHOT</version>
+  <version>1.0.39</version>
   <description></description>
   <url>http://s2dao.seasar.org/</url>
   <inceptionYear>2005</inceptionYear>
@@ -116,21 +116,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.seasar.dao</groupId>
-      <artifactId>s2-dao</artifactId>
-      <version>1.0.37-SNAPSHOT</version>
-      <type>jar</type>
-    </dependency>
-    <dependency>
-      <groupId>org.seasar.dao</groupId>
-      <artifactId>s2-dao</artifactId>
-      <version>1.0.37-SNAPSHOT</version>
-      <type>test-jar</type>
-    </dependency>
-    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>3.8.2</version>
       <type>jar</type>
       <scope>test</scope>
     </dependency>
