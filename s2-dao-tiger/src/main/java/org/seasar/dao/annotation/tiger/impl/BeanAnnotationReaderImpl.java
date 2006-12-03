@@ -27,6 +27,7 @@ import org.seasar.dao.annotation.tiger.ValueType;
 import org.seasar.framework.beans.PropertyDesc;
 
 public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
+
     private Class beanClass_;
 
     private Bean bean_;
@@ -62,7 +63,7 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
         return bean_.table();
     }
 
-    public String getVersionNoProteryNameAnnotation() {
+    public String getVersionNoPropertyName() {
         return (bean_ != null) ? bean_.versionNoProperty() : null;
     }
 
