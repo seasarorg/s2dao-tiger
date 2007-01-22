@@ -31,7 +31,7 @@
     <dependency>
       <groupId>org.seasar.dao</groupId>
       <artifactId>s2-dao-tiger</artifactId>
-      <version>1.0.40-SNAPSHOT</version>
+      <version>${project.version}</version>
       <type>jar</type>
     </dependency>
   </dependencies>
