@@ -2,7 +2,9 @@
 <!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container//EN"
 "http://www.seasar.org/dtd/components.dtd">
 <components namespace="dao">
-	<include path="j2ee-oracle.dicon"/>
+	<include path="j2ee.dicon"/>
+	<component
+		class="org.seasar.dao.annotation.tiger.impl.AnnotationReaderFactoryImpl"/>
 	<component class="org.seasar.dao.impl.AnnotationReaderFactoryImpl"/>
 	<component class="org.seasar.dao.impl.DaoMetaDataFactoryImpl"/>
 	<component
