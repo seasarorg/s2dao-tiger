@@ -24,12 +24,14 @@ import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.Column;
 import org.seasar.dao.annotation.tiger.Id;
 import org.seasar.dao.annotation.tiger.IdType;
+import org.seasar.dao.annotation.tiger.Ids;
 import org.seasar.dao.annotation.tiger.Relation;
 import org.seasar.dao.annotation.tiger.ValueType;
 import org.seasar.dao.impl.AbstractBeanAnnotationReaderTest;
 
 /**
  * @author manhole
+ * @author azusa
  */
 public class BeanAnnotationReaderImplTest extends
         AbstractBeanAnnotationReaderTest {
@@ -45,7 +47,14 @@ public class BeanAnnotationReaderImplTest extends
             return AnnotationTestBean2.class;
         } else if ("AnnotationTestBean3".equals(className)) {
             return AnnotationTestBean3.class;
+        } else if ("AnnotationTestBean4".equals(className)) {
+            return AnnotationTestBean4.class;
+        } else if ("AnnotationTestBean5".equals(className)) {
+            return AnnotationTestBean5.class;
+        } else if ("AnnotationTestBean6".equals(className)) {
+            return AnnotationTestBean6.class;
         }
+
         throw new AssertionFailedError(className);
     }
 
@@ -115,6 +124,84 @@ public class BeanAnnotationReaderImplTest extends
 
         private String bbb;
 
+        public String getAaa() {
+            return aaa;
+        }
+
+        public void setAaa(String aaa) {
+            this.aaa = aaa;
+        }
+
+        public String getBbb() {
+            return bbb;
+        }
+
+        @ValueType("fooType")
+        public void setBbb(String bbb) {
+            this.bbb = bbb;
+        }
+    }
+
+    public static class AnnotationTestBean4 {
+
+        private String aaa;
+
+        private String bbb;
+
+        @Ids( {
+                @Id(value = IdType.IDENTITY, dbms = "oracle"),
+                @Id(value = IdType.SEQUENCE, sequenceName = "myseq", dbms = "mysql"),
+                @Id(value = IdType.SEQUENCE, sequenceName = "myseq_2") })
+        public String getAaa() {
+            return aaa;
+        }
+
+        public void setAaa(String aaa) {
+            this.aaa = aaa;
+        }
+
+        public String getBbb() {
+            return bbb;
+        }
+
+        @ValueType("fooType")
+        public void setBbb(String bbb) {
+            this.bbb = bbb;
+        }
+    }
+
+    public static class AnnotationTestBean5 {
+
+        private String aaa;
+
+        private String bbb;
+
+        @Id(value = IdType.IDENTITY, dbms = "oracle")
+        public String getAaa() {
+            return aaa;
+        }
+
+        public void setAaa(String aaa) {
+            this.aaa = aaa;
+        }
+
+        public String getBbb() {
+            return bbb;
+        }
+
+        @ValueType("fooType")
+        public void setBbb(String bbb) {
+            this.bbb = bbb;
+        }
+    }
+
+    public static class AnnotationTestBean6 {
+
+        private String aaa;
+
+        private String bbb;
+
+        @Id(value = IdType.IDENTITY)
         public String getAaa() {
             return aaa;
         }

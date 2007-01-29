@@ -22,6 +22,7 @@ import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.Column;
 import org.seasar.dao.annotation.tiger.Id;
 import org.seasar.dao.annotation.tiger.IdType;
+import org.seasar.dao.annotation.tiger.Ids;
 import org.seasar.dao.annotation.tiger.Relation;
 import org.seasar.dao.annotation.tiger.ValueType;
 import org.seasar.framework.beans.PropertyDesc;
@@ -71,8 +72,11 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
         return (bean_ != null) ? bean_.timeStampProperty() : null;
     }
 
-    public String getId(PropertyDesc pd) {
-        Id id = getPropertyAnnotation(Id.class, pd);
+    public String getId(PropertyDesc pd, String dbmsSuffix) {
+        Id id = getIds(pd, dbmsSuffix);
+        if (id == null) {
+            id = getPropertyAnnotation(Id.class, pd);
+        }
         if (id == null) {
             return null;
         }
@@ -108,4 +112,21 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
         return (valueType != null) ? valueType.value() : null;
     }
 
+    protected Id getIds(PropertyDesc pd, String dbmsSuffix) {
+        Ids ids = getPropertyAnnotation(Ids.class, pd);
+        if (ids == null || ids.value().length == 0) {
+            return null;
+        }
+        Id defaultId = null;
+        for (int i = 0; i < ids.value().length; i++) {
+            Id id = ids.value()[i];
+            if (dbmsSuffix.equals("_" + id.dbms())) {
+                return id;
+            }
+            if ("".equals(id.dbms())) {
+                defaultId = id;
+            }
+        }
+        return defaultId;
+    }
 }

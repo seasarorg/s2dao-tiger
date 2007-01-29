@@ -21,13 +21,15 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * @author azusa
+ *
+ */
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface Id {
-    IdType value() default IdType.ASSIGNED;
-
-    String sequenceName() default "";
+public @interface Ids {
     
-    String dbms() default "";
+    Id[] value();
+
 }
