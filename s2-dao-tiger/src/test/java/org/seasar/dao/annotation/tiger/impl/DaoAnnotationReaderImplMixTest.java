@@ -21,7 +21,6 @@ import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 
 /**
- * 定数アノテーションとTigerアノテーションが混在する場合はTigerアノテーションが優先。
  * 
  * @author azusa
  * 
