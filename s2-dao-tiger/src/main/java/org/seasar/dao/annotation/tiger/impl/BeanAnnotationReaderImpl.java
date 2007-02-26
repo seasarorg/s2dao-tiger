@@ -17,7 +17,7 @@ package org.seasar.dao.annotation.tiger.impl;
 
 import java.lang.annotation.Annotation;
 
-import org.seasar.dao.BeanAnnotationReader;
+import org.seasar.dao.Dbms;
 import org.seasar.dao.annotation.tiger.Bean;
 import org.seasar.dao.annotation.tiger.Column;
 import org.seasar.dao.annotation.tiger.Id;
@@ -25,15 +25,23 @@ import org.seasar.dao.annotation.tiger.IdType;
 import org.seasar.dao.annotation.tiger.Ids;
 import org.seasar.dao.annotation.tiger.Relation;
 import org.seasar.dao.annotation.tiger.ValueType;
+import org.seasar.dao.impl.FieldBeanAnnotationReader;
 import org.seasar.framework.beans.PropertyDesc;
 
-public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
+/**
+ * @author keizou
+ * @author manhole
+ * @author azusa
+ * 
+ */
+public class BeanAnnotationReaderImpl extends FieldBeanAnnotationReader {
 
     private Class beanClass_;
 
     private Bean bean_;
 
     public BeanAnnotationReaderImpl(Class beanClass) {
+        super(beanClass);
         this.beanClass_ = beanClass;
         bean_ = (Bean) beanClass_.getAnnotation(Bean.class);
     }
@@ -54,31 +62,36 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
 
     public String getColumnAnnotation(PropertyDesc pd) {
         Column column = getPropertyAnnotation(Column.class, pd);
-        return (column != null) ? column.value() : null;
+        return (column != null) ? column.value() : super
+                .getColumnAnnotation(pd);
     }
 
     public String getTableAnnotation() {
+
         if (bean_ == null || bean_.table().length() == 0) {
-            return null;
+            return super.getTableAnnotation();
         }
         return bean_.table();
     }
 
     public String getVersionNoPropertyName() {
-        return (bean_ != null) ? bean_.versionNoProperty() : null;
+        return (bean_ != null) ? bean_.versionNoProperty() : super
+                .getVersionNoPropertyName();
     }
 
     public String getTimestampPropertyName() {
-        return (bean_ != null) ? bean_.timeStampProperty() : null;
+        return (bean_ != null) ? bean_.timeStampProperty() : super
+                .getTimestampPropertyName();
     }
 
-    public String getId(PropertyDesc pd, String dbmsSuffix) {
+    public String getId(PropertyDesc pd, Dbms dbms) {
+        String dbmsSuffix = dbms.getSuffix();
         Id id = getIds(pd, dbmsSuffix);
         if (id == null) {
             id = getPropertyAnnotation(Id.class, pd);
         }
         if (id == null) {
-            return null;
+            return super.getId(pd, dbms);
         }
         if (id.value().equals(IdType.SEQUENCE) && id.sequenceName() != null) {
             return id.value().name().toLowerCase() + ", sequenceName="
@@ -88,28 +101,29 @@ public class BeanAnnotationReaderImpl implements BeanAnnotationReader {
     }
 
     public String[] getNoPersisteneProps() {
-        return (bean_ != null) ? bean_.noPersistentProperty() : null;
+        return (bean_ != null) ? bean_.noPersistentProperty() : super
+                .getNoPersisteneProps();
     }
 
     public boolean hasRelationNo(PropertyDesc pd) {
         Relation rel = getPropertyAnnotation(Relation.class, pd);
-        return (rel != null);
+        return (rel != null) ? rel != null : super.hasRelationNo(pd);
     }
 
     public int getRelationNo(PropertyDesc pd) {
         Relation rel = getPropertyAnnotation(Relation.class, pd);
-        return (rel != null) ? rel.relationNo() : 0;
+        return (rel != null) ? rel.relationNo() : super.getRelationNo(pd);
     }
 
     public String getRelationKey(PropertyDesc pd) {
         Relation rel = getPropertyAnnotation(Relation.class, pd);
-        return (rel != null) ? rel.relationKey() : null;
+        return (rel != null) ? rel.relationKey() : super.getRelationKey(pd);
     }
 
     public String getValueType(PropertyDesc pd) {
         ValueType valueType = (ValueType) getPropertyAnnotation(
                 ValueType.class, pd);
-        return (valueType != null) ? valueType.value() : null;
+        return (valueType != null) ? valueType.value() : super.getValueType(pd);
     }
 
     protected Id getIds(PropertyDesc pd, String dbmsSuffix) {

@@ -17,7 +17,6 @@ package org.seasar.dao.annotation.tiger.impl;
 
 import java.lang.reflect.Method;
 
-import org.seasar.dao.DaoAnnotationReader;
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.NoPersistentProperty;
 import org.seasar.dao.annotation.tiger.PersistentProperty;
@@ -25,38 +24,45 @@ import org.seasar.dao.annotation.tiger.Procedure;
 import org.seasar.dao.annotation.tiger.Query;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;
+import org.seasar.dao.impl.FieldDaoAnnotationReader;
 import org.seasar.dao.util.ImplementInterfaceWalker;
 import org.seasar.dao.util.ImplementInterfaceWalker.Status;
 import org.seasar.framework.beans.BeanDesc;
 
-public class DaoAnnotationReaderImpl implements DaoAnnotationReader {
-
-    private BeanDesc daoBeanDesc_;
+/**
+ * 
+ * @author keizou
+ * @author manhole
+ * @author azusa
+ */
+public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
 
     private Class daoClass_;
 
     public DaoAnnotationReaderImpl(BeanDesc daoBeanDesc) {
-        daoBeanDesc_ = daoBeanDesc;
+        super(daoBeanDesc);
         daoClass_ = daoBeanDesc.getBeanClass();
     }
 
     public String getQuery(Method method) {
         Query query = method.getAnnotation(Query.class);
-        return (query != null) ? query.value() : null;
+        return (query != null) ? query.value() : super.getQuery(method);
     }
 
     public String getStoredProcedureName(Method method) {
         Procedure procedure = method.getAnnotation(Procedure.class);
-        return (procedure != null) ? procedure.value() : null;
+        return (procedure != null) ? procedure.value() : super
+                .getStoredProcedureName(method);
     }
 
     public String[] getArgNames(Method method) {
         Arguments arg = method.getAnnotation(Arguments.class);
-        return (arg != null) ? arg.value() : new String[0];
+        return (arg != null) ? arg.value() : super.getArgNames(method);
     }
 
     public Class getBeanClass() {
-        return getBeanClass0(daoClass_);
+        Class ret = getBeanClass0(daoClass_);
+        return ret != null ? ret : super.getBeanClass();
     }
 
     private static Class getBeanClassFromDao(Class daoClass) {
@@ -96,18 +102,18 @@ public class DaoAnnotationReaderImpl implements DaoAnnotationReader {
     public String[] getNoPersistentProps(Method method) {
         NoPersistentProperty npp = method
                 .getAnnotation(NoPersistentProperty.class);
-        return (npp != null) ? npp.value() : null;
+        return (npp != null) ? npp.value() : super.getNoPersistentProps(method);
     }
 
     public String[] getPersistentProps(Method method) {
         PersistentProperty pp = (PersistentProperty) method
                 .getAnnotation(PersistentProperty.class);
-        return (pp != null) ? pp.value() : null;
+        return (pp != null) ? pp.value() : super.getPersistentProps(method);
     }
 
     public String getSQL(Method method, String suffix) {
         Sql sql = method.getAnnotation(Sql.class);
-        return (sql != null) ? sql.value() : null;
+        return (sql != null) ? sql.value() : super.getSQL(method, suffix);
     }
 
 }
