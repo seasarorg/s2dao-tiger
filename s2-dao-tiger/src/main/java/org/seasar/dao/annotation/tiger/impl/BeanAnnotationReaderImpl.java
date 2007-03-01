@@ -89,15 +89,18 @@ public class BeanAnnotationReaderImpl extends FieldBeanAnnotationReader {
         Id id = getIds(pd, dbmsSuffix);
         if (id == null) {
             id = getPropertyAnnotation(Id.class, pd);
+            if (id == null) {
+                return super.getId(pd, dbms);
+            }
+            if (("_" + id.dbms()).equals(dbms.getSuffix())
+                    || id.dbms().equals("")) {
+                return getIdName(id);
+            } else {
+                return null;
+            }
+        } else {
+            return getIdName(id);
         }
-        if (id == null) {
-            return super.getId(pd, dbms);
-        }
-        if (id.value().equals(IdType.SEQUENCE) && id.sequenceName() != null) {
-            return id.value().name().toLowerCase() + ", sequenceName="
-                    + id.sequenceName();
-        }
-        return id.value().name().toLowerCase();
     }
 
     public String[] getNoPersisteneProps() {
@@ -143,4 +146,13 @@ public class BeanAnnotationReaderImpl extends FieldBeanAnnotationReader {
         }
         return defaultId;
     }
+
+    protected String getIdName(Id id) {
+        if (id.value().equals(IdType.SEQUENCE) && id.sequenceName() != null) {
+            return id.value().name().toLowerCase() + ", sequenceName="
+                    + id.sequenceName();
+        }
+        return id.value().name().toLowerCase();
+    }
+
 }
