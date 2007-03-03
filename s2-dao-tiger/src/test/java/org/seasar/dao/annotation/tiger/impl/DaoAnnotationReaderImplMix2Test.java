@@ -22,6 +22,7 @@ import org.seasar.dao.annotation.tiger.PersistentProperty;
 import org.seasar.dao.annotation.tiger.Query;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;
+import org.seasar.dao.annotation.tiger.Sqls;
 import org.seasar.dao.impl.AbstractDao;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
@@ -73,6 +74,18 @@ public class DaoAnnotationReaderImplMix2Test extends
         @PersistentProperty("def")
         public Aaa createAaa2(Aaa aaa);
 
+        public static final String selectB_oracle_SQL = "SELECT * FROM EEE";
+
+        public static final String selectB_SQL = "SELECT * FROM FFF";
+
+        @Sqls( { @Sql(value = "SELECT * FROM BBB", dbms = "oracle"),
+                @Sql("SELECT * FROM DDD") })
+        public Aaa selectB(int id);
+
+        public static final String selectC_oracle_SQL = "SELECT * FROM GGG";
+
+        @Sql(value = "SELECT * FROM CCC", dbms = "oracle")
+        public Aaa selectC(int id);
     }
 
     public static interface Aaa2Dao extends AaaDao {

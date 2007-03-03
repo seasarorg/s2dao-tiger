@@ -21,12 +21,15 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * @author azusa
+ * 
+ */
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface Sql {
-    String value();
+public @interface Sqls {
 
-    String dbms() default "";
+    Sql[] value();
 
 }

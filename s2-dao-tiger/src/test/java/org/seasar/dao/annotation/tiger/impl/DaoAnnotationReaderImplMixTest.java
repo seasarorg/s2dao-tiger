@@ -61,6 +61,16 @@ public class DaoAnnotationReaderImplMixTest extends
 
         public Aaa createAaa2(Aaa aaa);
 
+        public static final String selectB_oracle_SQL = "SELECT * FROM BBB";
+
+        public static final String selectB_SQL = "SELECT * FROM DDD";
+
+        public Aaa selectB(int id);
+
+        public static final String selectC_oracle_SQL = "SELECT * FROM CCC";
+
+        public Aaa selectC(int id);
+
     }
 
     public static interface Aaa2Dao extends AaaDao {

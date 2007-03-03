@@ -17,6 +17,8 @@ package org.seasar.dao.annotation.tiger.impl;
 
 import junit.framework.TestCase;
 
+import org.seasar.dao.dbms.HSQL;
+import org.seasar.dao.dbms.Oracle;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 
@@ -58,6 +60,22 @@ public abstract class AbstractDaoAnnotationReaderImplTest extends TestCase {
         String sql = annotationReader.getSQL(clazz.getMethod("getAaaById3",
                 new Class[] { int.class }), null);
         assertEquals("SELECT * FROM AAA", sql);
+    }
+
+    public void testSql2() throws Exception {
+        String sql = annotationReader.getSQL(clazz.getMethod("selectB",
+                new Class[] { int.class }), new Oracle().getSuffix());
+        assertEquals("1", "SELECT * FROM BBB", sql);
+        sql = annotationReader.getSQL(clazz.getMethod("selectB",
+                new Class[] { int.class }), new HSQL().getSuffix());
+        assertEquals("2", "SELECT * FROM DDD", sql);
+        sql = annotationReader.getSQL(clazz.getMethod("selectC",
+                new Class[] { int.class }), new Oracle().getSuffix());
+        assertEquals("3", "SELECT * FROM CCC", sql);
+        sql = annotationReader.getSQL(clazz.getMethod("selectC",
+                new Class[] { int.class }), new HSQL().getSuffix());
+        assertNull("4", sql);
+
     }
 
     public void testArgNames() throws Exception {

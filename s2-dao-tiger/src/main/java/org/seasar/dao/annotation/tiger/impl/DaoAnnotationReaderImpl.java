@@ -24,6 +24,7 @@ import org.seasar.dao.annotation.tiger.Procedure;
 import org.seasar.dao.annotation.tiger.Query;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;
+import org.seasar.dao.annotation.tiger.Sqls;
 import org.seasar.dao.impl.FieldDaoAnnotationReader;
 import org.seasar.dao.util.ImplementInterfaceWalker;
 import org.seasar.dao.util.ImplementInterfaceWalker.Status;
@@ -112,8 +113,38 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
     }
 
     public String getSQL(Method method, String suffix) {
-        Sql sql = method.getAnnotation(Sql.class);
-        return (sql != null) ? sql.value() : super.getSQL(method, suffix);
+        Sql sql = getSqls(method, suffix);
+        if (sql == null) {
+            sql = method.getAnnotation(Sql.class);
+            if (sql == null) {
+                return super.getSQL(method, suffix);
+            } else if (("_" + sql.dbms()).equals(suffix)
+                    || sql.dbms().equals("")) {
+                return (sql != null) ? sql.value() : null;
+            } else {
+                return null;
+            }
+        }
+        return (sql != null) ? sql.value() : null;
+    }
+
+    protected Sql getSqls(Method method, String dbmsSuffix) {
+        Sqls sqls = method.getAnnotation(Sqls.class);
+        if (sqls == null || sqls.value().length == 0) {
+            return null;
+        }
+        Sql defaultSql = null;
+        for (int i = 0; i < sqls.value().length; i++) {
+            Sql sql = sqls.value()[i];
+            if (dbmsSuffix.equals("_" + sql.dbms())) {
+                return sql;
+            }
+            if ("".equals(sql.dbms())) {
+                defaultSql = sql;
+            }
+        }
+
+        return defaultSql;
     }
 
 }
