@@ -29,10 +29,9 @@
   </build>
   <dependencies>
     <dependency>
-      <groupId>org.seasar.dao</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>s2-dao-tiger</artifactId>
       <version>${project.version}</version>
-      <type>jar</type>
     </dependency>
   </dependencies>
 </project>

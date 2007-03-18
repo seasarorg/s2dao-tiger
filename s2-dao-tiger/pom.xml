@@ -16,13 +16,13 @@
   <url>http://s2dao.seasar.org/</url>
   <dependencies>
     <dependency>
-      <groupId>org.seasar.dao</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>s2-dao</artifactId>
       <version>${project.version}</version>
       <type>jar</type>
     </dependency>
     <dependency>
-      <groupId>org.seasar.dao</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>s2-dao</artifactId>
       <version>${project.version}</version>
       <type>test-jar</type>

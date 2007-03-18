@@ -13,7 +13,14 @@
 	<component name="notSupportedTx"
 		class="org.seasar.extension.tx.NotSupportedInterceptor"/>
 
-	<component class="org.seasar.extension.jdbc.impl.BasicResultSetFactory"/>
+	<component 
+		name="resultSetFactory"
+		class="org.seasar.dao.pager.PagerResultSetFactoryWrapper">
+		<arg>
+			<component class="org.seasar.extension.jdbc.impl.BasicResultSetFactory"/>
+		</arg>
+		<property name="useScrollCursor">true</property>
+	</component>
 	<component class="org.seasar.extension.jdbc.impl.BasicStatementFactory"/>
 	<!--
 	<component class="org.seasar.extension.jdbc.impl.OracleResultSetFactory"/>
