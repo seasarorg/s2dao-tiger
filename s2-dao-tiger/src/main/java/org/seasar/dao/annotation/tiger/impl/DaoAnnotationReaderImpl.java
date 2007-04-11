@@ -66,6 +66,7 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
         return ret != null ? ret : super.getBeanClass();
     }
 
+    @SuppressWarnings("unchecked")
     private static Class getBeanClassFromDao(Class daoClass) {
         if (daoClass.isAnnotationPresent(S2Dao.class)) {
             S2Dao s2dao = (S2Dao) daoClass.getAnnotation(S2Dao.class);

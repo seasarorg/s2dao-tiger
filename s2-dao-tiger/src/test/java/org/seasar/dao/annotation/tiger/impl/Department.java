@@ -22,6 +22,8 @@ import org.seasar.dao.annotation.tiger.Bean;
 @Bean(table = "DEPT")
 public class Department implements Serializable {
 
+    private static final long serialVersionUID = -4575613949355203711L;
+
     private int deptno;
 
     private String dname;

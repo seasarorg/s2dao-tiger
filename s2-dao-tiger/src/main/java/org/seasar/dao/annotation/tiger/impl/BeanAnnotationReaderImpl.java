@@ -40,6 +40,7 @@ public class BeanAnnotationReaderImpl extends FieldBeanAnnotationReader {
 
     private Bean bean_;
 
+    @SuppressWarnings("unchecked")
     public BeanAnnotationReaderImpl(Class beanClass) {
         super(beanClass);
         this.beanClass_ = beanClass;

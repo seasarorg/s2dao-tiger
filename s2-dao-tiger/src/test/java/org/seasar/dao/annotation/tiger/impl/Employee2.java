@@ -23,6 +23,8 @@ import org.seasar.dao.annotation.tiger.Relation;
 @Bean(table = "EMP2")
 public class Employee2 implements Serializable {
 
+    private static final long serialVersionUID = -4126621990231973650L;
+
     private long empno;
 
     private String ename;
