@@ -16,6 +16,7 @@
 package org.seasar.dao.annotation.tiger.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.S2Dao;
@@ -31,6 +32,8 @@ public interface EmployeeDao {
 
     @Sql("SELECT empno, ename, dname FROM emp, dept where emp.deptno = dept.deptno")
     public EmployeeDto[] findAll();
+
+    public Map[] getAllEmployeeMap();
 
     /**
      * @param empno
