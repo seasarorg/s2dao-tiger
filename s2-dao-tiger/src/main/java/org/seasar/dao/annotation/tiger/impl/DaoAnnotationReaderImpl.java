@@ -16,6 +16,9 @@
 package org.seasar.dao.annotation.tiger.impl;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.List;
 
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.NoPersistentProperty;
@@ -64,6 +67,54 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
     public Class getBeanClass() {
         Class ret = getBeanClass0(daoClass_);
         return ret != null ? ret : super.getBeanClass();
+    }
+
+    public Class getBeanClass(Method method) {
+        Type type = method.getGenericReturnType();
+        if (isTypeOf(type, List.class)) {
+            Type ret = getElementTypeOfList(type);
+            if (ret != null) {
+                return Class.class.cast(ret);
+            }
+        }
+        return super.getBeanClass(method);
+    }
+
+    public static Type getElementTypeOfList(final Type type) {
+        if (!isTypeOf(type, List.class)) {
+            return null;
+        }
+        return getGenericParameter(type, 0);
+    }
+
+    public static boolean isTypeOf(final Type type, final Class<?> clazz) {
+        if (Class.class.isInstance(type)) {
+            return clazz.isAssignableFrom(Class.class.cast(type));
+        }
+        if (ParameterizedType.class.isInstance(type)) {
+            final ParameterizedType parameterizedType = ParameterizedType.class
+                    .cast(type);
+            return isTypeOf(parameterizedType.getRawType(), clazz);
+        }
+        return false;
+    }
+
+    public static Type[] getGenericParameter(final Type type) {
+        if (!ParameterizedType.class.isInstance(type)) {
+            return null;
+        }
+        return ParameterizedType.class.cast(type).getActualTypeArguments();
+    }
+
+    public static Type getGenericParameter(final Type type, final int index) {
+        if (!ParameterizedType.class.isInstance(type)) {
+            return null;
+        }
+        final Type[] genericParameter = getGenericParameter(type);
+        if (genericParameter == null) {
+            return null;
+        }
+        return genericParameter[index];
     }
 
     @SuppressWarnings("unchecked")

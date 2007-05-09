@@ -15,6 +15,10 @@
  */
 package org.seasar.dao.annotation.tiger.impl;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.Type;
+import java.util.List;
+
 import org.seasar.dao.DaoMetaDataFactory;
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.NoPersistentProperty;
@@ -42,6 +46,18 @@ public class DaoAnnotationReaderImplTest extends
         daoClazz = AaaDao.class;
     }
 
+    public void testGetElementTypeOfList() throws Exception {
+        Method method = Aaa2Dao.class.getMethod("findAll", new Class[0]);
+        Type type = method.getGenericReturnType();
+        Type ret = DaoAnnotationReaderImpl.getElementTypeOfList(type);
+        assertEquals(Aaa.class, ret);
+    }
+
+    public void testGetBeanClass() throws Exception {
+        Method method = Aaa2Dao.class.getMethod("findAll", new Class[0]);
+        assertEquals(Aaa.class, annotationReader.getBeanClass(method));
+    }
+
     @S2Dao(bean = Aaa.class)
     public static interface AaaDao {
 
@@ -53,6 +69,9 @@ public class DaoAnnotationReaderImplTest extends
 
         @Sql("SELECT * FROM AAA")
         public Aaa getAaaById3(int id);
+
+        @Sql("SELECT * FROM AAA")
+        public List<Aaa> findAll();
 
         @NoPersistentProperty("abc")
         public Aaa createAaa1(Aaa aaa);

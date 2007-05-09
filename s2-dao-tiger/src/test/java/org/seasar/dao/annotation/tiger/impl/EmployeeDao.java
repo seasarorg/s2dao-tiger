@@ -19,6 +19,8 @@ import java.util.List;
 
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.S2Dao;
+import org.seasar.dao.annotation.tiger.Sql;
+import org.seasar.dao.impl.EmployeeDto;
 
 @S2Dao(bean = Employee.class)
 public interface EmployeeDao {
@@ -26,6 +28,9 @@ public interface EmployeeDao {
     public List getAllEmployees();
 
     public Employee[] getAllEmployeeArray();
+
+    @Sql("SELECT empno, ename, dname FROM emp, dept where emp.deptno = dept.deptno")
+    public EmployeeDto[] findAll();
 
     /**
      * @param empno
