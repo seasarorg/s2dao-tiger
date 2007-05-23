@@ -15,6 +15,8 @@
  */
 package org.seasar.dao.annotation.tiger.impl;
 
+import java.util.List;
+
 import org.seasar.dao.DaoMetaDataFactory;
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.NoPersistentProperty;
@@ -22,8 +24,10 @@ import org.seasar.dao.annotation.tiger.PersistentProperty;
 import org.seasar.dao.annotation.tiger.Query;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;
+import org.seasar.dao.annotation.tiger.SqlFile;
 import org.seasar.dao.annotation.tiger.Sqls;
 import org.seasar.dao.impl.AbstractDao;
+import org.seasar.dao.impl.AbstractDaoAnnotationReaderImplTest;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 
@@ -35,6 +39,7 @@ import org.seasar.framework.beans.factory.BeanDescFactory;
  */
 public class DaoAnnotationReaderImplMix2Test extends
         AbstractDaoAnnotationReaderImplTest {
+
     @Override
     protected void setUp() throws Exception {
         clazz = AbstractAaaDaoImpl.class;
@@ -74,6 +79,14 @@ public class DaoAnnotationReaderImplMix2Test extends
         @PersistentProperty("def")
         public Aaa createAaa2(Aaa aaa);
 
+        // public Class findAll_BEAN = String.class;
+
+        public List<Aaa> findAll();
+
+        public Aaa[] findArray();
+
+        public Aaa find(int id);
+
         public static final String selectB_oracle_SQL = "SELECT * FROM EEE";
 
         public static final String selectB_SQL = "SELECT * FROM FFF";
@@ -86,6 +99,12 @@ public class DaoAnnotationReaderImplMix2Test extends
 
         @Sql(value = "SELECT * FROM CCC", dbms = "oracle")
         public Aaa selectC(int id);
+
+        public String findUsingSqlFile_SQL_FILE = null;
+
+        @SqlFile
+        public Aaa findUsingSqlFile(int id);
+
     }
 
     public static interface Aaa2Dao extends AaaDao {

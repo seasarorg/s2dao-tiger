@@ -26,8 +26,10 @@ import org.seasar.dao.annotation.tiger.PersistentProperty;
 import org.seasar.dao.annotation.tiger.Query;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;
+import org.seasar.dao.annotation.tiger.SqlFile;
 import org.seasar.dao.annotation.tiger.Sqls;
 import org.seasar.dao.impl.AbstractDao;
+import org.seasar.dao.impl.AbstractDaoAnnotationReaderImplTest;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 
@@ -73,6 +75,10 @@ public class DaoAnnotationReaderImplTest extends
         @Sql("SELECT * FROM AAA")
         public List<Aaa> findAll();
 
+        public Aaa[] findArray();
+
+        public Aaa find(int id);
+
         @NoPersistentProperty("abc")
         public Aaa createAaa1(Aaa aaa);
 
@@ -85,6 +91,9 @@ public class DaoAnnotationReaderImplTest extends
 
         @Sql(value = "SELECT * FROM CCC", dbms = "oracle")
         public Aaa selectC(int id);
+
+        @SqlFile
+        public Aaa findUsingSqlFile(int id);
 
     }
 

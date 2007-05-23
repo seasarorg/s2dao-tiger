@@ -15,8 +15,11 @@
  */
 package org.seasar.dao.annotation.tiger.impl;
 
+import java.util.List;
+
 import org.seasar.dao.DaoMetaDataFactory;
 import org.seasar.dao.impl.AbstractDao;
+import org.seasar.dao.impl.AbstractDaoAnnotationReaderImplTest;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
 
@@ -53,6 +56,14 @@ public class DaoAnnotationReaderImplMixTest extends
 
         public Aaa getAaaById3(int id);
 
+        public Class findAll_BEAN = Aaa.class;
+
+        public List findAll();
+
+        public Aaa[] findArray();
+
+        public Aaa find(int id);
+
         public static final String createAaa1_NO_PERSISTENT_PROPS = "abc";
 
         public Aaa createAaa1(Aaa aaa);
@@ -70,6 +81,10 @@ public class DaoAnnotationReaderImplMixTest extends
         public static final String selectC_oracle_SQL = "SELECT * FROM CCC";
 
         public Aaa selectC(int id);
+
+        public String findUsingSqlFile_SQL_FILE = null;
+
+        public Aaa findUsingSqlFile(int id);
 
     }
 

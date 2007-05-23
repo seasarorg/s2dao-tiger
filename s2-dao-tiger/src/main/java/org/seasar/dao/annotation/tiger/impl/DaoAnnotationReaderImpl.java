@@ -27,6 +27,7 @@ import org.seasar.dao.annotation.tiger.Procedure;
 import org.seasar.dao.annotation.tiger.Query;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;
+import org.seasar.dao.annotation.tiger.SqlFile;
 import org.seasar.dao.annotation.tiger.Sqls;
 import org.seasar.dao.impl.FieldDaoAnnotationReader;
 import org.seasar.dao.util.ImplementInterfaceWalker;
@@ -48,27 +49,32 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
         daoClass_ = daoBeanDesc.getBeanClass();
     }
 
+    @Override
     public String getQuery(Method method) {
         Query query = method.getAnnotation(Query.class);
         return (query != null) ? query.value() : super.getQuery(method);
     }
 
+    @Override
     public String getStoredProcedureName(Method method) {
         Procedure procedure = method.getAnnotation(Procedure.class);
         return (procedure != null) ? procedure.value() : super
                 .getStoredProcedureName(method);
     }
 
+    @Override
     public String[] getArgNames(Method method) {
         Arguments arg = method.getAnnotation(Arguments.class);
         return (arg != null) ? arg.value() : super.getArgNames(method);
     }
 
+    @Override
     public Class getBeanClass() {
         Class ret = getBeanClass0(daoClass_);
         return ret != null ? ret : super.getBeanClass();
     }
 
+    @Override
     public Class getBeanClass(Method method) {
         Type type = method.getGenericReturnType();
         if (isTypeOf(type, List.class)) {
@@ -152,18 +158,21 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
         }
     }
 
+    @Override
     public String[] getNoPersistentProps(Method method) {
         NoPersistentProperty npp = method
                 .getAnnotation(NoPersistentProperty.class);
         return (npp != null) ? npp.value() : super.getNoPersistentProps(method);
     }
 
+    @Override
     public String[] getPersistentProps(Method method) {
         PersistentProperty pp = (PersistentProperty) method
                 .getAnnotation(PersistentProperty.class);
         return (pp != null) ? pp.value() : super.getPersistentProps(method);
     }
 
+    @Override
     public String getSQL(Method method, String suffix) {
         Sql sql = getSqls(method, suffix);
         if (sql == null) {
@@ -197,6 +206,15 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
         }
 
         return defaultSql;
+    }
+
+    @Override
+    public boolean isSqlFile(final Method method) {
+        final SqlFile sqlFile = method.getAnnotation(SqlFile.class);
+        if (sqlFile != null) {
+            return true;
+        }
+        return super.isSqlFile(method);
     }
 
 }
