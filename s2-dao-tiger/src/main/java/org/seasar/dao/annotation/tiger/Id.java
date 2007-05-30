@@ -28,6 +28,6 @@ public @interface Id {
     IdType value() default IdType.ASSIGNED;
 
     String sequenceName() default "";
-    
+
     String dbms() default "";
 }
