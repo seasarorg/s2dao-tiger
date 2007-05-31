@@ -80,6 +80,10 @@ public class AnnotationDaoMetaDataImplTest extends DaoMetaDataImplTest {
             return Employee11Dao.class;
         } else if (className.equals("Employee12Dao")) {
             return Employee12Dao.class;
+        } else if (className.equals("Employee13Dao")) {
+            return Employee13Dao.class;
+        } else if (className.equals("Employee14Dao")) {
+            return Employee14Dao.class;
         } else if (className.equals("Employee8Manager")) {
             return Employee8Manager.class;
         } else if (className.equals("DepartmentTotalSalaryDao")) {
