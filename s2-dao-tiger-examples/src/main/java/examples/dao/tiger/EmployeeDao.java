@@ -16,6 +16,7 @@
 package examples.dao.tiger;
 
 import java.util.List;
+import java.util.Map;
 
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.S2Dao;
@@ -52,4 +53,7 @@ public interface EmployeeDao {
     public List getEmployeeByJobDeptno(String job, Integer deptno);
 
     public int update(Employee employee);
+
+    @Sql("SELECT empno as value, ename as label FROM emp")
+    public List<Map<String, Object>> getValueLabel();
 }

@@ -18,6 +18,7 @@ package org.seasar.dao.annotation.tiger.impl;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 import org.seasar.dao.DaoMetaDataFactory;
 import org.seasar.dao.annotation.tiger.Arguments;
@@ -60,6 +61,12 @@ public class DaoAnnotationReaderImplTest extends
         assertEquals(Aaa.class, annotationReader.getBeanClass(method));
     }
 
+    public void testGetBeanClassGenerics() throws Exception {
+        Method method = AaaDao.class.getMethod("findAll2", new Class[0]);
+        Class<?> clazz = annotationReader.getBeanClass(method);
+        assertEquals(Map.class, clazz);
+    }
+
     @S2Dao(bean = Aaa.class)
     public static interface AaaDao {
 
@@ -74,6 +81,8 @@ public class DaoAnnotationReaderImplTest extends
 
         @Sql("SELECT * FROM AAA")
         public List<Aaa> findAll();
+
+        public List<Map<String, String>> findAll2();
 
         public Aaa[] findArray();
 

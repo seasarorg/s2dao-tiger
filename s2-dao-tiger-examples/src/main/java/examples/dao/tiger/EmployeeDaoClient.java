@@ -16,6 +16,7 @@
 package examples.dao.tiger;
 
 import java.util.List;
+import java.util.Map;
 
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.S2ContainerFactory;
@@ -33,6 +34,11 @@ public class EmployeeDaoClient {
             List employees = dao.getAllEmployees();
             for (int i = 0; i < employees.size(); ++i) {
                 System.out.println(employees.get(i));
+            }
+
+            List<Map<String, Object>> valueLabels = dao.getValueLabel();
+            for (Map<String, Object> row : valueLabels) {
+                System.out.println(row);
             }
 
             Employee employee = dao.getEmployee(7788);
