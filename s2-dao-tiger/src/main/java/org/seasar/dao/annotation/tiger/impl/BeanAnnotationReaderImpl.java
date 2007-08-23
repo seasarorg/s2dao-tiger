@@ -49,6 +49,14 @@ public class BeanAnnotationReaderImpl extends FieldBeanAnnotationReader {
 
     private <T extends Annotation> T getPropertyAnnotation(Class<T> clazz,
             PropertyDesc pd) {
+        if (beanDesc.hasField(pd.getPropertyName())) {
+            T fieldAnnotation = beanDesc.getField(pd.getPropertyName())
+                    .getAnnotation(clazz);
+            if (fieldAnnotation != null) {
+                return fieldAnnotation;
+            }
+        }
+
         if (pd.getWriteMethod() != null) {
             T annotation = pd.getWriteMethod().getAnnotation(clazz);
             if (annotation != null) {

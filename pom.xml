@@ -49,6 +49,7 @@
   <modules>
     <module>s2-dao-tiger</module>
     <module>s2-dao-tiger-examples</module>
+    <module>s2-dao-tiger-s24-test</module>
   </modules>
   <build>
     <defaultGoal>validate</defaultGoal>
