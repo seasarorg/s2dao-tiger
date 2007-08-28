@@ -18,6 +18,7 @@ package org.seasar.dao.annotation.tiger.impl;
 import junit.framework.TestCase;
 
 import org.seasar.dao.AnnotationReaderFactory;
+import org.seasar.dao.ArgumentDtoAnnotationReader;
 import org.seasar.dao.BeanAnnotationReader;
 import org.seasar.dao.DaoAnnotationReader;
 import org.seasar.dao.impl.Employee;
@@ -67,4 +68,14 @@ public class AnnotationReaderFactoryImplTigerTest extends TestCase {
                 daoBeanDesc).getClass(), daoAnnotationReader.getClass());
     }
 
+    public void testArgumentDtoAnnotationReader() throws Exception {
+        // ## Act ##
+        final ArgumentDtoAnnotationReader dtoAnnotationReader = annotationReaderFactory
+                .createArgumentDtoAnnotationReader();
+
+        // ## Assert ##
+        assertEquals(tigerAnnotationReaderFactory
+                .createArgumentDtoAnnotationReader().getClass(),
+                dtoAnnotationReader.getClass());
+    }
 }
