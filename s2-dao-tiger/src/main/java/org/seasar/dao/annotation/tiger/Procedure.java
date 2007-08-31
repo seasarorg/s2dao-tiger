@@ -21,9 +21,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * 
+ * @deprecated {@link ProcedureCall}を使用してください。
+ */
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
+@Deprecated
 public @interface Procedure {
     String value();
 }

@@ -22,7 +22,6 @@ import junit.framework.TestCase;
 import org.seasar.dao.ArgumentDtoAnnotationReader;
 import org.seasar.dao.annotation.tiger.ParameterType;
 import org.seasar.dao.annotation.tiger.ProcedureParameter;
-import org.seasar.dao.annotation.tiger.ProcedureParameters;
 import org.seasar.dao.annotation.tiger.ValueType;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
@@ -38,14 +37,6 @@ public class ArgumentDtoAnnotationReaderImplTest extends TestCase {
     private BeanDesc hogeDesc = BeanDescFactory.getBeanDesc(Hoge.class);
 
     private BeanDesc fooDesc = BeanDescFactory.getBeanDesc(Foo.class);
-
-    public void testIsProcedureParameters() throws Exception {
-        assertTrue(reader.isProcedureParameters(Hoge.class));
-    }
-
-    public void testIsProcedureParameters_fieldAnnotation() throws Exception {
-        assertTrue(reader.isProcedureParameters(Foo.class));
-    }
 
     public void testGetProcedureParameter() throws Exception {
         Field field = hogeDesc.getField("aaa");
@@ -95,7 +86,6 @@ public class ArgumentDtoAnnotationReaderImplTest extends TestCase {
         assertEquals("hogeValueType", reader.getValueType(fooDesc, field));
     }
 
-    @ProcedureParameters
     public static class Hoge {
 
         @ValueType("hogeValueType")

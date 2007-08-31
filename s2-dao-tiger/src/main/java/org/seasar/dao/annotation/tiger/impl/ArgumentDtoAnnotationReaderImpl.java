@@ -19,7 +19,6 @@ import java.lang.reflect.Field;
 
 import org.seasar.dao.ArgumentDtoAnnotationReader;
 import org.seasar.dao.annotation.tiger.ProcedureParameter;
-import org.seasar.dao.annotation.tiger.ProcedureParameters;
 import org.seasar.dao.annotation.tiger.ValueType;
 import org.seasar.dao.impl.FieldArgumentDtoAnnotationReader;
 import org.seasar.framework.beans.BeanDesc;
@@ -31,17 +30,6 @@ import org.seasar.framework.beans.BeanDesc;
  */
 public class ArgumentDtoAnnotationReaderImpl extends
         FieldArgumentDtoAnnotationReader {
-
-    @SuppressWarnings("unchecked")
-    public boolean isProcedureParameters(final Class dtoClass) {
-        if (isSimpleType(dtoClass)) {
-            return false;
-        }
-        if (dtoClass.isAnnotationPresent(ProcedureParameters.class)) {
-            return true;
-        }
-        return super.isProcedureParameters(dtoClass);
-    }
 
     public String getProcedureParameter(final BeanDesc dtoDesc,
             final Field field) {

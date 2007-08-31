@@ -22,12 +22,23 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * プロシージャのパラメータの集合を示します。
+ * プロシージャの呼び出しを示します。
+ * <p>
+ * このアノテーションが指定されたメソッドは、引数の数が0または1でなければいけません。
+ * </p>
+ * <p>
+ * 引数の数が1のとき、その引数の型はDTOでなけばいけません。 DTOのフィールドに{@link ProcedureParameter}を指定することでプロシージャのパラメータを示すことができます。
+ * </p>
  * 
+ * @see
  * @author taedium
  */
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface ProcedureParameters {
+@Target(ElementType.METHOD)
+public @interface ProcedureCall {
+    /**
+     * プロシージャ名
+     */
+    String value();
 }

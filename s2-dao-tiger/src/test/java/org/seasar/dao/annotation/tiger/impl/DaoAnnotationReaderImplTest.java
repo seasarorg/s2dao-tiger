@@ -24,6 +24,7 @@ import org.seasar.dao.DaoMetaDataFactory;
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.NoPersistentProperty;
 import org.seasar.dao.annotation.tiger.PersistentProperty;
+import org.seasar.dao.annotation.tiger.ProcedureCall;
 import org.seasar.dao.annotation.tiger.Query;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;
@@ -103,6 +104,9 @@ public class DaoAnnotationReaderImplTest extends
 
         @SqlFile
         public Aaa findUsingSqlFile(int id);
+
+        @ProcedureCall("hoge")
+        public void execute();
 
     }
 

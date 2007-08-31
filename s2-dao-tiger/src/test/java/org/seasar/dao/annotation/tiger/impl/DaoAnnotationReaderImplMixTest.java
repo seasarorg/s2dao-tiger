@@ -86,6 +86,10 @@ public class DaoAnnotationReaderImplMixTest extends
 
         public Aaa findUsingSqlFile(int id);
 
+        public String execute_PROCEDURE_CALL = "hoge";
+
+        public void execute();
+
     }
 
     public static interface Aaa2Dao extends AaaDao {
