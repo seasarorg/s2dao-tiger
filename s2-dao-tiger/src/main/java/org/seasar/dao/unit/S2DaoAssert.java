@@ -28,7 +28,8 @@ import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
 /**
  * S2Dao用のアサートメソッドの集合です。
  * <p>
- * このクラスに定義されたアサートメソッドはS2JUnit4のテストメソッドから呼び出されることを想定しています。
+ * このクラスに定義されたアサートメソッドはJUnit4のテストメソッドから呼び出されることを想定しています。
+ * いくつかのメソッドは、特定のコンポーネントがS2コンテナに登録されていることを前提に動作します。
  * </p>
  * <p>
  * static importを宣言して利用してください。
