@@ -15,8 +15,12 @@
  */
 package org.seasar.dao.unit;
 
+import static org.seasar.dao.unit.S2DaoAssert.*;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.seasar.extension.dataset.DataRow;
 import org.seasar.extension.dataset.DataSet;
@@ -49,7 +53,7 @@ public class S2DaoAssertTest extends S2TestCase {
         Foo foo = new Foo();
         foo.setBbb("222");
         bean.setFoo(foo);
-        S2DaoAssert.assertBeanEquals(expected, bean);
+        assertBeanEquals(expected, bean);
     }
 
     public void testAssertBeanEquals_DataSet_List() {
@@ -67,7 +71,56 @@ public class S2DaoAssertTest extends S2TestCase {
         bean.setFoo(foo);
         List<Hoge> list = new ArrayList<Hoge>();
         list.add(bean);
-        S2DaoAssert.assertBeanEquals(expected, list);
+        assertBeanEquals(expected, list);
+    }
+
+    /**
+     * 
+     * @throws Exception
+     */
+    public void testAssertMapEquals_DataSet_Map() throws Exception {
+        DataSet dataSet = new DataSetImpl();
+        DataTable table = dataSet.addTable("hoge");
+        table.addColumn("aaa");
+        table.addColumn("bbb");
+        DataRow row = table.addRow();
+        row.setValue("aaa", 10);
+        row.setValue("bbb", 20);
+
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        map.put("aaa", 10);
+        map.put("bbb", 20);
+
+        assertMapEquals(dataSet, map);
+    }
+
+    /**
+     * 
+     * @throws Exception
+     */
+    public void testAssertMapEquals_DataSet_List() throws Exception {
+        DataSet dataSet = new DataSetImpl();
+        DataTable table = dataSet.addTable("hoge");
+        table.addColumn("aaa");
+        table.addColumn("bbb");
+        DataRow row = table.addRow();
+        row.setValue("aaa", 10);
+        row.setValue("bbb", 20);
+        row = table.addRow();
+        row.setValue("aaa", 30);
+        row.setValue("bbb", 40);
+
+        List<Map<String, Integer>> list = new ArrayList<Map<String, Integer>>();
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        map.put("aaa", 10);
+        map.put("bbb", 20);
+        list.add(map);
+        map = new HashMap<String, Integer>();
+        map.put("aaa", 30);
+        map.put("bbb", 40);
+        list.add(map);
+
+        assertMapEquals(dataSet, list);
     }
 
     public static class Hoge {
