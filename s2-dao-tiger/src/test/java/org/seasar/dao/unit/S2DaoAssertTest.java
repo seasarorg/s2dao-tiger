@@ -15,8 +15,6 @@
  */
 package org.seasar.dao.unit;
 
-import static org.seasar.dao.unit.S2DaoAssert.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,12 +46,14 @@ public class S2DaoAssertTest extends S2TestCase {
         DataRow row = table.addRow();
         row.setValue("aaa", "111");
         row.setValue("bbb_0", "222");
+
         Hoge bean = new Hoge();
         bean.setAaa("111");
         Foo foo = new Foo();
         foo.setBbb("222");
         bean.setFoo(foo);
-        assertBeanEquals(expected, bean);
+
+        S2DaoAssert.assertBeanEquals(expected, bean);
     }
 
     public void testAssertBeanEquals_DataSet_List() {
@@ -64,6 +64,7 @@ public class S2DaoAssertTest extends S2TestCase {
         DataRow row = table.addRow();
         row.setValue("aaa", "111");
         row.setValue("bbb_0", "222");
+
         Hoge bean = new Hoge();
         bean.setAaa("111");
         Foo foo = new Foo();
@@ -71,7 +72,8 @@ public class S2DaoAssertTest extends S2TestCase {
         bean.setFoo(foo);
         List<Hoge> list = new ArrayList<Hoge>();
         list.add(bean);
-        assertBeanEquals(expected, list);
+
+        S2DaoAssert.assertBeanEquals(expected, list);
     }
 
     /**
@@ -91,7 +93,7 @@ public class S2DaoAssertTest extends S2TestCase {
         map.put("aaa", 10);
         map.put("bbb", 20);
 
-        assertMapEquals(dataSet, map);
+        S2DaoAssert.assertMapEquals(dataSet, map);
     }
 
     /**
@@ -120,7 +122,7 @@ public class S2DaoAssertTest extends S2TestCase {
         map.put("bbb", 40);
         list.add(map);
 
-        assertMapEquals(dataSet, list);
+        S2DaoAssert.assertMapEquals(dataSet, list);
     }
 
     public static class Hoge {
@@ -133,32 +135,18 @@ public class S2DaoAssertTest extends S2TestCase {
 
         private Foo foo;
 
-        /**
-         * @return Returns the aaa.
-         */
         public String getAaa() {
             return aaa;
         }
 
-        /**
-         * @param aaa
-         *            The aaa to set.
-         */
         public void setAaa(String aaa) {
             this.aaa = aaa;
         }
 
-        /**
-         * @return Returns the foo.
-         */
         public Foo getFoo() {
             return foo;
         }
 
-        /**
-         * @param foo
-         *            The foo to set.
-         */
         public void setFoo(Foo foo) {
             this.foo = foo;
         }
@@ -170,17 +158,10 @@ public class S2DaoAssertTest extends S2TestCase {
 
         private String bbb;
 
-        /**
-         * @return Returns the bbb.
-         */
         public String getBbb() {
             return bbb;
         }
 
-        /**
-         * @param bbb
-         *            The bbb to set.
-         */
         public void setBbb(String bbb) {
             this.bbb = bbb;
         }
