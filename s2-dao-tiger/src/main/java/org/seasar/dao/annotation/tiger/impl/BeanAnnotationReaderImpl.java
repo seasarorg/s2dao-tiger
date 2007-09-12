@@ -38,7 +38,7 @@ import org.seasar.framework.beans.factory.BeanDescFactory;
  */
 public class BeanAnnotationReaderImpl extends FieldBeanAnnotationReader {
 
-    private Class beanClass_;
+    private Class<?> beanClass_;
 
     private Bean bean_;
 

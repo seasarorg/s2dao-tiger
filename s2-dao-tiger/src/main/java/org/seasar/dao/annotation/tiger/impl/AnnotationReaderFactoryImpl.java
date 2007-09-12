@@ -27,6 +27,7 @@ public class AnnotationReaderFactoryImpl implements AnnotationReaderFactory {
         return new DaoAnnotationReaderImpl(daoBeanDesc);
     }
 
+    @SuppressWarnings("unchecked")
     public BeanAnnotationReader createBeanAnnotationReader(Class beanClass) {
         return new BeanAnnotationReaderImpl(beanClass);
     }

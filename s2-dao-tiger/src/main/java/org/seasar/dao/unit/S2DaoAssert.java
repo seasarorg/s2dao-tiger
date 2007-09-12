@@ -277,7 +277,7 @@ public class S2DaoAssert {
      *            Beanのクラス
      * @return {@link BeanMetaData}
      */
-    protected static BeanMetaData createBeanMetaData(Class beanClass) {
+    protected static BeanMetaData createBeanMetaData(Class<?> beanClass) {
         final BeanMetaDataFactory factory = getBeanMetaDataFactory();
         return factory.createBeanMetaData(beanClass);
     }

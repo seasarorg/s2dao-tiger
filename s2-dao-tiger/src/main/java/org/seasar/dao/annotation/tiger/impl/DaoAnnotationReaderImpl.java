@@ -43,7 +43,7 @@ import org.seasar.framework.beans.BeanDesc;
  */
 public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
 
-    private Class daoClass_;
+    private Class<?> daoClass_;
 
     public DaoAnnotationReaderImpl(BeanDesc daoBeanDesc) {
         super(daoBeanDesc);
@@ -77,13 +77,13 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
     }
 
     @Override
-    public Class getBeanClass() {
-        Class ret = getBeanClass0(daoClass_);
+    public Class<?> getBeanClass() {
+        Class<?> ret = getBeanClass0(daoClass_);
         return ret != null ? ret : super.getBeanClass();
     }
 
     @Override
-    public Class getBeanClass(Method method) {
+    public Class<?> getBeanClass(Method method) {
         Type type = method.getGenericReturnType();
         if (isTypeOf(type, List.class)) {
             Type ret = getElementTypeOfList(type);
@@ -162,8 +162,8 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
         return null;
     }
 
-    private Class getBeanClass0(Class daoClass) {
-        final Class beanClass = getBeanClassFromDao(daoClass);
+    private Class<?> getBeanClass0(Class<?> daoClass) {
+        final Class<?> beanClass = getBeanClassFromDao(daoClass);
         if (beanClass != null) {
             return beanClass;
         }
@@ -176,10 +176,11 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
     private static class HandlerImpl implements
             ImplementInterfaceWalker.Handler {
 
-        Class foundBeanClass;
+        Class<?> foundBeanClass;
 
+        @SuppressWarnings("unchecked")
         public Status accept(Class ifs) {
-            final Class beanClass = getBeanClassFromDao(ifs);
+            final Class<?> beanClass = getBeanClassFromDao(ifs);
             if (beanClass != null) {
                 foundBeanClass = beanClass;
                 return ImplementInterfaceWalker.BREAK;
