@@ -28,7 +28,7 @@ import java.lang.annotation.Target;
  */
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
+@Target( { ElementType.METHOD, ElementType.FIELD })
 public @interface ProcedureParameter {
 
     /** パラメータのタイプ */
