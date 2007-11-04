@@ -92,6 +92,10 @@ public class DaoAnnotationReaderImplMixTest extends
 
         public Aaa findUsingSqlFile(int id);
 
+        public String findUsingSqlFile2_SQL_FILE = "org/seasar/dao/impl/sqlfile/testFile.sql";
+
+        public Aaa findUsingSqlFile2(int id);
+
         public String execute_PROCEDURE_CALL = "hoge";
 
         public void execute();

@@ -251,6 +251,19 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
     }
 
     @Override
+    public String getSqlFilePath(Method method) {
+        final SqlFile sqlFile = method.getAnnotation(SqlFile.class);
+        if (sqlFile != null) {
+            String path = sqlFile.value();
+            if (path == null) {
+                path = "";
+            }
+            return path;
+        }
+        return super.getSqlFilePath(method);
+    }
+
+    @Override
     public boolean isCheckSingleRowUpdate() {
         final CheckSingleRowUpdate checkSingleRowUpdate = AnnotationUtil
                 .getAnnotation(daoClass_, CheckSingleRowUpdate.class);

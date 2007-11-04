@@ -110,6 +110,9 @@ public class DaoAnnotationReaderImplTest extends
         @SqlFile
         public Aaa findUsingSqlFile(int id);
 
+        @SqlFile("org/seasar/dao/impl/sqlfile/testFile.sql")
+        public Aaa findUsingSqlFile2(int id);
+
         @ProcedureCall("hoge")
         public void execute();
 

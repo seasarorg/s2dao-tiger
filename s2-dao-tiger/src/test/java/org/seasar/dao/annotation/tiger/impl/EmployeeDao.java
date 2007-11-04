@@ -21,6 +21,7 @@ import java.util.Map;
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;
+import org.seasar.dao.annotation.tiger.SqlFile;
 import org.seasar.dao.impl.EmployeeDto;
 
 @S2Dao(bean = Employee.class)
@@ -42,7 +43,11 @@ public interface EmployeeDao {
     @Arguments("empno")
     public Employee getEmployee(int empno);
 
+    @SqlFile
     public int getCount();
+
+    @SqlFile("org/seasar/dao/impl/sqlfile/getCount.sql")
+    public int getCount2();
 
     public void update(Employee employee);
 
