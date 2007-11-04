@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.seasar.dao.DaoMetaDataFactory;
 import org.seasar.dao.annotation.tiger.Arguments;
+import org.seasar.dao.annotation.tiger.CheckSingleRowUpdate;
 import org.seasar.dao.annotation.tiger.NoPersistentProperty;
 import org.seasar.dao.annotation.tiger.PersistentProperty;
 import org.seasar.dao.annotation.tiger.ProcedureCall;
@@ -51,9 +52,12 @@ public class DaoAnnotationReaderImplMix2Test extends
     }
 
     @S2Dao(bean = Aaa.class)
+    @CheckSingleRowUpdate(false)
     public static interface AaaDao {
 
         public static final Class BEAN = Bbb.class;
+
+        public static final boolean CHECK_SINGLE_ROW_UPDATE = true;
 
         public static final String getAaaById1_ARGS = "aaa1,aaa3";
 
@@ -70,7 +74,7 @@ public class DaoAnnotationReaderImplMix2Test extends
         @Sql("SELECT * FROM AAA")
         public Aaa getAaaById3(int id);
 
-        public static final String NO_PERSISTENT_PROPS = "def";
+        public static final String createAaa1_NO_PERSISTENT_PROPS = "def";
 
         @NoPersistentProperty("abc")
         public Aaa createAaa1(Aaa aaa);
@@ -79,6 +83,11 @@ public class DaoAnnotationReaderImplMix2Test extends
 
         @PersistentProperty("def")
         public Aaa createAaa2(Aaa aaa);
+
+        public static final boolean createAaa3_CHECK_SINGLE_ROW_UPDATE = true;
+
+        @CheckSingleRowUpdate(false)
+        public int createAaa3(Aaa aaa);
 
         // public Class findAll_BEAN = String.class;
 

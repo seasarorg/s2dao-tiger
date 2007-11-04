@@ -44,6 +44,8 @@ public class DaoAnnotationReaderImplMixTest extends
 
         public static final Class BEAN = Aaa.class;
 
+        public static final boolean CHECK_SINGLE_ROW_UPDATE = false;
+
         public static final String getAaaById1_ARGS = "aaa1,aaa2";
 
         public Aaa getAaaById1(int id);
@@ -71,6 +73,10 @@ public class DaoAnnotationReaderImplMixTest extends
         public static final String createAaa2_PERSISTENT_PROPS = "def";
 
         public Aaa createAaa2(Aaa aaa);
+
+        public static final boolean createAaa3_CHECK_SINGLE_ROW_UPDATE = false;
+
+        public int createAaa3(Aaa aaa);
 
         public static final String selectB_oracle_SQL = "SELECT * FROM BBB";
 

@@ -22,6 +22,7 @@ import java.util.Map;
 
 import org.seasar.dao.DaoMetaDataFactory;
 import org.seasar.dao.annotation.tiger.Arguments;
+import org.seasar.dao.annotation.tiger.CheckSingleRowUpdate;
 import org.seasar.dao.annotation.tiger.NoPersistentProperty;
 import org.seasar.dao.annotation.tiger.PersistentProperty;
 import org.seasar.dao.annotation.tiger.ProcedureCall;
@@ -69,6 +70,7 @@ public class DaoAnnotationReaderImplTest extends
     }
 
     @S2Dao(bean = Aaa.class)
+    @CheckSingleRowUpdate(false)
     public static interface AaaDao {
 
         @Arguments( { "aaa1", "aaa2" })
@@ -94,6 +96,9 @@ public class DaoAnnotationReaderImplTest extends
 
         @PersistentProperty("def")
         public Aaa createAaa2(Aaa aaa);
+
+        @CheckSingleRowUpdate(false)
+        public int createAaa3(Aaa aaa);
 
         @Sqls( { @Sql(value = "SELECT * FROM BBB", dbms = "oracle"),
                 @Sql("SELECT * FROM DDD") })

@@ -21,6 +21,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import org.seasar.dao.annotation.tiger.Arguments;
+import org.seasar.dao.annotation.tiger.CheckSingleRowUpdate;
 import org.seasar.dao.annotation.tiger.NoPersistentProperty;
 import org.seasar.dao.annotation.tiger.PersistentProperty;
 import org.seasar.dao.annotation.tiger.Procedure;
@@ -30,6 +31,7 @@ import org.seasar.dao.annotation.tiger.S2Dao;
 import org.seasar.dao.annotation.tiger.Sql;
 import org.seasar.dao.annotation.tiger.SqlFile;
 import org.seasar.dao.annotation.tiger.Sqls;
+import org.seasar.dao.annotation.tiger.util.AnnotationUtil;
 import org.seasar.dao.impl.FieldDaoAnnotationReader;
 import org.seasar.dao.util.ImplementInterfaceWalker;
 import org.seasar.dao.util.ImplementInterfaceWalker.Status;
@@ -246,6 +248,26 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
             return true;
         }
         return super.isSqlFile(method);
+    }
+
+    @Override
+    public boolean isCheckSingleRowUpdate() {
+        final CheckSingleRowUpdate checkSingleRowUpdate = AnnotationUtil
+                .getAnnotation(daoClass_, CheckSingleRowUpdate.class);
+        if (checkSingleRowUpdate != null) {
+            return checkSingleRowUpdate.value();
+        }
+        return super.isCheckSingleRowUpdate();
+    }
+
+    @Override
+    public boolean isCheckSingleRowUpdate(Method method) {
+        final CheckSingleRowUpdate checkSingleRowUpdate = method
+                .getAnnotation(CheckSingleRowUpdate.class);
+        if (checkSingleRowUpdate != null) {
+            return checkSingleRowUpdate.value();
+        }
+        return super.isCheckSingleRowUpdate(method);
     }
 
 }

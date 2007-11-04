@@ -18,6 +18,7 @@ package org.seasar.dao.annotation.tiger.impl;
 import java.util.List;
 
 import org.seasar.dao.annotation.tiger.Arguments;
+import org.seasar.dao.annotation.tiger.CheckSingleRowUpdate;
 import org.seasar.dao.annotation.tiger.NoPersistentProperty;
 import org.seasar.dao.annotation.tiger.PersistentProperty;
 import org.seasar.dao.annotation.tiger.Query;
@@ -81,6 +82,9 @@ public interface EmployeeAutoDao {
      */
     @PersistentProperty("deptno")
     public void update3(Employee employee);
+
+    @CheckSingleRowUpdate(false)
+    public int update4(Employee employee);
 
     public void updateBatch(Employee[] employees);
 
