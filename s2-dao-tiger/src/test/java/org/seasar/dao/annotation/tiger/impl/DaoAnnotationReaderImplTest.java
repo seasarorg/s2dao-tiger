@@ -69,8 +69,7 @@ public class DaoAnnotationReaderImplTest extends
         assertEquals(Map.class, clazz);
     }
 
-    @S2Dao(bean = Aaa.class)
-    @CheckSingleRowUpdate(false)
+    @S2Dao(bean = Aaa.class, checkSingleRowUpdate = false)
     public static interface AaaDao {
 
         @Arguments( { "aaa1", "aaa2" })

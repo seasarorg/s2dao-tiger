@@ -23,7 +23,7 @@ import java.lang.annotation.Target;
 
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
-@Target( { ElementType.TYPE, ElementType.METHOD })
+@Target( { ElementType.METHOD })
 public @interface CheckSingleRowUpdate {
     boolean value() default true;
 }

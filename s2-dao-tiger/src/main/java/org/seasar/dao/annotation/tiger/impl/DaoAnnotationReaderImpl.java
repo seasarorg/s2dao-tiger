@@ -265,10 +265,14 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
 
     @Override
     public boolean isCheckSingleRowUpdate() {
-        final CheckSingleRowUpdate checkSingleRowUpdate = AnnotationUtil
-                .getAnnotation(daoClass_, CheckSingleRowUpdate.class);
-        if (checkSingleRowUpdate != null) {
-            return checkSingleRowUpdate.value();
+//        final CheckSingleRowUpdate checkSingleRowUpdate = AnnotationUtil
+//                .getAnnotation(daoClass_, CheckSingleRowUpdate.class);
+//        if (checkSingleRowUpdate != null) {
+//            return checkSingleRowUpdate.value();
+//        }
+        final S2Dao s2dao = AnnotationUtil.getAnnotation(daoClass_, S2Dao.class);
+        if (s2dao != null) {
+            return s2dao.checkSingleRowUpdate();
         }
         return super.isCheckSingleRowUpdate();
     }
