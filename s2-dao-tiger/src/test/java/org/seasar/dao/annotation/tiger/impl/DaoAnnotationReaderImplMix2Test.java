@@ -51,7 +51,8 @@ public class DaoAnnotationReaderImplMix2Test extends
         daoClazz = AaaDao.class;
     }
 
-    @S2Dao(bean = Aaa.class, checkSingleRowUpdate = false)
+    @S2Dao(bean = Aaa.class)
+    @CheckSingleRowUpdate(false)
     public static interface AaaDao {
 
         public static final Class BEAN = Bbb.class;

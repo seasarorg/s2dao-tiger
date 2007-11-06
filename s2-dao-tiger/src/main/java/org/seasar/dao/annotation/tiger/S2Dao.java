@@ -26,5 +26,4 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface S2Dao {
     Class<?> bean();
-    boolean checkSingleRowUpdate() default true;
 }
