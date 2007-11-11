@@ -95,6 +95,8 @@ public class DaoAnnotationReaderImplMix2Test extends
 
         public Aaa[] findArray();
 
+        public int[] findSimpleTypeArray();
+
         public Aaa find(int id);
 
         public static final String selectB_oracle_SQL = "SELECT * FROM EEE";

@@ -56,4 +56,7 @@ public interface EmployeeDao {
 
     @Sql("SELECT empno as value, ename as label FROM emp")
     public List<Map<String, Object>> getValueLabel();
+
+    @Sql("SELECT empno FROM emp")
+    public List<Integer> getAllEmployeeNumbers();
 }

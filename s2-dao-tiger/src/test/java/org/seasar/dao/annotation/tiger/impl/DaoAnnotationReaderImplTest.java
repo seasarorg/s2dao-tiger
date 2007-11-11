@@ -69,6 +69,12 @@ public class DaoAnnotationReaderImplTest extends
         assertEquals(Map.class, clazz);
     }
 
+    public void testGetBeanClassGenerics_simpleType() throws Exception {
+        Method method = AaaDao.class.getMethod("findAll3", new Class[0]);
+        Class<?> clazz = annotationReader.getBeanClass(method);
+        assertEquals(Integer.class, clazz);
+    }
+
     @S2Dao(bean = Aaa.class)
     @CheckSingleRowUpdate(false)
     public static interface AaaDao {
@@ -87,7 +93,11 @@ public class DaoAnnotationReaderImplTest extends
 
         public List<Map<String, String>> findAll2();
 
+        public List<Integer> findAll3();
+
         public Aaa[] findArray();
+
+        public int[] findSimpleTypeArray();
 
         public Aaa find(int id);
 

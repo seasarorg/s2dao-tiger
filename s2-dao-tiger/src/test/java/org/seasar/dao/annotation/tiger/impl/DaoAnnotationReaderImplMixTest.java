@@ -64,6 +64,8 @@ public class DaoAnnotationReaderImplMixTest extends
 
         public Aaa[] findArray();
 
+        public int[] findSimpleTypeArray();
+
         public Aaa find(int id);
 
         public static final String createAaa1_NO_PERSISTENT_PROPS = "abc";

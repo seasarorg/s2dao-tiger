@@ -31,7 +31,7 @@ public class EmployeeDaoClient {
         try {
             EmployeeDao dao = (EmployeeDao) container
                     .getComponent(EmployeeDao.class);
-            List employees = dao.getAllEmployees();
+            List<?> employees = dao.getAllEmployees();
             for (int i = 0; i < employees.size(); ++i) {
                 System.out.println(employees.get(i));
             }
@@ -39,6 +39,11 @@ public class EmployeeDaoClient {
             List<Map<String, Object>> valueLabels = dao.getValueLabel();
             for (Map<String, Object> row : valueLabels) {
                 System.out.println(row);
+            }
+
+            List<Integer> numbers = dao.getAllEmployeeNumbers();
+            for (Integer number : numbers) {
+                System.out.println(number);
             }
 
             Employee employee = dao.getEmployee(7788);
