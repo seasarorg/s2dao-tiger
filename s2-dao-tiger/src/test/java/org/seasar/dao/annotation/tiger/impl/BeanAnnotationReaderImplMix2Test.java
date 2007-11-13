@@ -192,7 +192,7 @@ public class BeanAnnotationReaderImplMix2Test extends
         @Ids( {
                 @Id(value = IdType.IDENTITY, dbms = "oracle"),
                 @Id(value = IdType.SEQUENCE, sequenceName = "myseq", dbms = "mysql"),
-                @Id(value = IdType.SEQUENCE, sequenceName = "myseq_2") })
+                @Id(value = IdType.SEQUENCE, sequenceName = "myseq_2", allocationSize = 10) })
         public String getAaa() {
             return aaa;
         }

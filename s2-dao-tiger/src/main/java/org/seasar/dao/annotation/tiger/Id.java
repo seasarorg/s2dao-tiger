@@ -30,4 +30,6 @@ public @interface Id {
     String sequenceName() default "";
 
     String dbms() default "";
+
+    int allocationSize() default 0;
 }

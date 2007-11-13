@@ -161,10 +161,14 @@ public class BeanAnnotationReaderImpl extends FieldBeanAnnotationReader {
 
     protected String getIdName(Id id) {
         if (id.value().equals(IdType.SEQUENCE) && id.sequenceName() != null) {
-            return id.value().name().toLowerCase() + ", sequenceName="
-                    + id.sequenceName();
+            StringBuilder buf = new StringBuilder(100);
+            buf.append(id.value().name().toLowerCase());
+            buf.append(", sequenceName=");
+            buf.append(id.sequenceName());
+            buf.append(", allocationSize=");
+            buf.append(id.allocationSize());
+            return buf.toString();
         }
         return id.value().name().toLowerCase();
     }
-
 }
