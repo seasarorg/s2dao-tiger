@@ -13,53 +13,29 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package examples.dao.tiger;
+package org.seasar.dao.tiger.impl;
 
 import java.util.List;
-import java.util.Map;
 
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.S2Dao;
-import org.seasar.dao.annotation.tiger.Sql;
+import org.seasar.dao.impl.Employee;
 import org.seasar.dao.tiger.FetchHandler;
 
 /**
+ * @author jundu
  * 
- * @author 上原 慶三
  */
 @S2Dao(bean = Employee.class)
 public interface EmployeeDao {
 
-    public List getAllEmployees();
+    public List<Employee> selectAll();
 
-    /**
-     * @param empno
-     * @return
-     */
     @Arguments("empno")
-    public Employee getEmployee(int empno);
+    public Employee selectByEmpno(long empno);
 
-    /**
-     * @param empno
-     * @return
-     */
-    @Sql("SELECT count(*) FROM emp")
-    public int getCount();
+    public int fetchAll(FetchHandler<Employee> handler);
 
-    /**
-     * @param empno
-     * @return
-     */
-    @Arguments( { "job", "deptno" })
-    public List getEmployeeByJobDeptno(String job, Integer deptno);
-
-    public int update(Employee employee);
-
-    @Sql("SELECT empno as value, ename as label FROM emp")
-    public List<Map<String, Object>> getValueLabel();
-
-    @Sql("SELECT empno FROM emp")
-    public List<Integer> getAllEmployeeNumbers();
-
-    public int fetchAllEmployee(FetchHandler<Employee> fetchHandler);
+    @Arguments("deptno")
+    public int fetchByDeptno(int deptno);
 }

@@ -21,7 +21,7 @@ import org.seasar.dao.util.ImplementInterfaceWalker;
 import org.seasar.dao.util.ImplementInterfaceWalker.Status;
 
 /**
- * @author jundo
+ * @author jundu
  * 
  */
 public class AnnotationUtil {

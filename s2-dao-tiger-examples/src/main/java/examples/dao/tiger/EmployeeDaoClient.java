@@ -15,9 +15,14 @@
  */
 package examples.dao.tiger;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
+import org.seasar.dao.tiger.FetchHandler;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.S2ContainerFactory;
 
@@ -58,6 +63,42 @@ public class EmployeeDaoClient {
             dao.getEmployeeByJobDeptno("CLERK", new Integer(20));
 
             System.out.println("updatedRows:" + dao.update(employee));
+
+            FileOutputStream fos = null;
+            try {
+                fos = new FileOutputStream("example.csv");
+                final PrintWriter writer = new PrintWriter(fos);
+                dao.fetchAllEmployee(new FetchHandler<Employee>() {
+                    public boolean execute(Employee emp) {
+                        Department dept = emp.getDepartment();
+                        StringBuilder sb = new StringBuilder(255);
+                        sb.append(emp.getEmpno()).append(",");
+                        sb.append(emp.getEname()).append(",");
+                        sb.append(emp.getJob()).append(",");
+                        sb.append(emp.getMgr()).append(",");
+                        sb.append(emp.getHiredate()).append(",");
+                        sb.append(emp.getSal()).append(",");
+                        sb.append(emp.getComm()).append(",");
+                        sb.append(dept.getDeptno()).append(",");
+                        sb.append(dept.getDname()).append(",");
+                        sb.append(dept.getLoc());
+                        writer.println(sb.toString());
+                        return true;
+                    }
+                });
+                writer.flush();
+                writer.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } finally {
+                if (fos != null) {
+                    try {
+                        fos.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
         } finally {
             container.destroy();
         }
