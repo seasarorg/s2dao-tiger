@@ -15,30 +15,27 @@
  */
 package org.seasar.dao.tiger.impl;
 
-import java.util.List;
+public class EmployeeSearchCondition {
 
-import org.seasar.dao.annotation.tiger.Arguments;
-import org.seasar.dao.annotation.tiger.S2Dao;
-import org.seasar.dao.impl.Employee;
-import org.seasar.dao.tiger.FetchHandler;
+    public static final String dname_COLUMN = "dname_0";
 
-/**
- * @author jundu
- * 
- */
-@S2Dao(bean = Employee.class)
-public interface EmployeeDao {
+    private String job;
 
-    public List<Employee> selectAll();
+    private String dname;
 
-    @Arguments("empno")
-    public Employee selectByEmpno(long empno);
+    public String getDname() {
+        return dname;
+    }
 
-    public int fetchAll(FetchHandler<Employee> handler);
+    public void setDname(String dname) {
+        this.dname = dname;
+    }
 
-    @Arguments("deptno")
-    public int fetchByDeptno(int deptno);
+    public String getJob() {
+        return job;
+    }
 
-    public int fetchEmployeesBySearchCondition(EmployeeSearchCondition dto,
-            FetchHandler<Employee> handler);
+    public void setJob(String job) {
+        this.job = job;
+    }
 }

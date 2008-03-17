@@ -17,6 +17,7 @@ package examples.dao.tiger;
 
 import java.util.List;
 
+import org.seasar.dao.tiger.FetchHandler;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.S2ContainerFactory;
 
@@ -57,6 +58,14 @@ public class EmployeeAutoDaoClient {
             System.out.println("before timestamp:" + employee.getTimestamp());
             dao.update(employee);
             System.out.println("after timestamp:" + employee.getTimestamp());
+
+            dao.fetchEmployeesBySearchCondition(dto,
+                    new FetchHandler<Employee>() {
+                        public boolean execute(Employee employee) {
+                            System.out.println(employee);
+                            return true;
+                        }
+                    });
         } finally {
             container.destroy();
         }

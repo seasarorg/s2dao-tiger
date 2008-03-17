@@ -22,11 +22,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.seasar.dao.BeanMetaData;
+import org.seasar.dao.DaoMetaData;
 import org.seasar.dao.RelationRowCreator;
 import org.seasar.dao.RowCreator;
+import org.seasar.dao.annotation.tiger.impl.AnnotationReaderFactoryImpl;
 import org.seasar.dao.impl.Employee;
 import org.seasar.dao.impl.RelationRowCreatorImpl;
 import org.seasar.dao.impl.RowCreatorImpl;
+import org.seasar.dao.impl.SelectDynamicCommand;
+import org.seasar.dao.pager.PagerContext;
 import org.seasar.dao.tiger.FetchHandler;
 import org.seasar.dao.unit.S2DaoTestCase;
 import org.seasar.extension.jdbc.ResultSetHandler;
@@ -69,6 +73,37 @@ public class FetchBeanMetaDataResultSetHandlerTest extends S2DaoTestCase {
         }
     }
 
+    public void testHandle2() {
+        try {
+            PagerContext.start();
+            DaoMetaData dmd = createDaoMetaData(EmployeeDao.class);
+            assertNotNull("1", dmd);
+            SelectDynamicCommand cmd = (SelectDynamicCommand) dmd
+                    .getSqlCommand("fetchEmployeesBySearchCondition");
+            assertNotNull("2", cmd);
+            final List<Employee> ret = new ArrayList<Employee>();
+            FetchHandler<Employee> handler = new FetchHandler<Employee>() {
+                public boolean execute(Employee emp) {
+                    if (!emp.getDepartment().getDname().equals("RESEARCH")) {
+                        fail();
+                    }
+                    ret.add(emp);
+                    return true;
+                }
+            };
+            EmployeeSearchCondition dto = new EmployeeSearchCondition();
+            dto.setDname("RESEARCH");
+            Object[] args = new Object[] { dto, handler };
+            PagerContext.getContext().pushArgs(args);
+            Object count = cmd.execute(args);
+            assertNotNull("3", count);
+            assertEquals("4", Integer.valueOf(5), count);
+        } finally {
+            PagerContext.getContext().popArgs();
+            PagerContext.end();
+        }
+    }
+
     /*
      * (non-Javadoc)
      * 
@@ -77,6 +112,7 @@ public class FetchBeanMetaDataResultSetHandlerTest extends S2DaoTestCase {
     protected void setUp() throws Exception {
         super.setUp();
         include("j2ee.dicon");
+        setAnnotationReaderFactory(new AnnotationReaderFactoryImpl());
     }
 
     protected void setUpAfterBindFields() throws Throwable {

@@ -20,6 +20,7 @@ import java.util.List;
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.Query;
 import org.seasar.dao.annotation.tiger.S2Dao;
+import org.seasar.dao.tiger.FetchHandler;
 
 /**
  * 
@@ -46,4 +47,7 @@ public interface EmployeeAutoDao {
     public List getEmployeesBySearchCondition(EmployeeSearchCondition dto);
 
     public void update(Employee employee);
+
+    public int fetchEmployeesBySearchCondition(EmployeeSearchCondition dto,
+            FetchHandler<Employee> handler);
 }
