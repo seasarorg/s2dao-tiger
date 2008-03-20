@@ -18,6 +18,7 @@ package org.seasar.dao.tiger.impl;
 import java.lang.reflect.Method;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 import org.seasar.dao.BeanMetaData;
 import org.seasar.dao.DtoMetaData;
@@ -28,6 +29,7 @@ import org.seasar.dao.impl.RelationRowCreatorImpl;
 import org.seasar.dao.impl.RowCreatorImpl;
 import org.seasar.dao.pager.PagerContext;
 import org.seasar.dao.tiger.FetchHandler;
+import org.seasar.dao.util.TypeUtil;
 import org.seasar.extension.jdbc.ResultSetHandler;
 
 /**
@@ -47,6 +49,7 @@ public class FetchResultSetHandler implements ResultSetHandler {
             final DtoMetaDataFactory dtoMetaDataFactory) {
         this.beanClass = beanClass;
         this.beanMetaData = beanMetaData;
+        this.dtoMetaDataFactory = dtoMetaDataFactory;
     }
 
     /*
@@ -56,19 +59,39 @@ public class FetchResultSetHandler implements ResultSetHandler {
      */
     public Object handle(ResultSet resultSet) throws SQLException {
         FetchHandler<?> fetchHandler = getFetchHandler();
+        ResultSetHandler resultSetHandler = createResultSetHandler(fetchHandler);
+        return resultSetHandler.handle(resultSet);
+    }
+
+    /**
+     * @param fetchHandler
+     * @param parameterClass
+     * @return
+     */
+    protected ResultSetHandler createResultSetHandler(
+            FetchHandler<?> fetchHandler) {
         Class<?> parameterClass = getParameterClass(fetchHandler);
-        ResultSetHandler resultSetHandler = null;
-        if (parameterClass.isAssignableFrom(beanClass)) {
-            resultSetHandler = new FetchBeanMetaDataResultSetHandler(
-                    beanMetaData, createRowCreator(),
-                    createRelationRowCreator(), fetchHandler);
-        } else {
+        ResultSetHandler resultSetHandler;
+        if (TypeUtil.isSimpleType(parameterClass)) {
+            // Simple
+            resultSetHandler = new FetchObjectResultSetHandler(parameterClass,
+                    fetchHandler);
+        } else if (Map.class.isAssignableFrom(parameterClass)) {
+            // Map
+            resultSetHandler = new FetchMapResultSetHandler(fetchHandler);
+        } else if (!parameterClass.isAssignableFrom(beanClass)) {
+            // Dto
             final DtoMetaData dtoMetaData = dtoMetaDataFactory
                     .getDtoMetaData(parameterClass);
             resultSetHandler = new FetchDtoMetaDataResultSetHandler(
                     dtoMetaData, createRowCreator(), fetchHandler);
+        } else {
+            // Bean
+            resultSetHandler = new FetchBeanMetaDataResultSetHandler(
+                    beanMetaData, createRowCreator(),
+                    createRelationRowCreator(), fetchHandler);
         }
-        return resultSetHandler.handle(resultSet);
+        return resultSetHandler;
     }
 
     /**

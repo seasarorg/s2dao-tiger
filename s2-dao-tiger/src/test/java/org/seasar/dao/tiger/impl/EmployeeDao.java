@@ -16,6 +16,7 @@
 package org.seasar.dao.tiger.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.S2Dao;
@@ -41,4 +42,8 @@ public interface EmployeeDao {
 
     public int fetchEmployeesBySearchCondition(EmployeeSearchCondition dto,
             FetchHandler<Employee> handler);
+
+    public int fetchAllToMap(FetchHandler<Map> handler);
+
+    public int fetchAllEmpno(FetchHandler<Integer> handler);
 }
