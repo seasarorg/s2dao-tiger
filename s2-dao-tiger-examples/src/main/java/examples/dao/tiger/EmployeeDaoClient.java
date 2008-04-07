@@ -22,12 +22,13 @@ import java.util.Map;
 
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.factory.S2ContainerFactory;
+import org.seasar.framework.util.ResourceUtil;
 
 public class EmployeeDaoClient {
 
     private static final String PATH = "examples/dao/tiger/EmployeeDao.dicon";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         S2Container container = S2ContainerFactory.create(PATH);
         container.init();
         try {
@@ -63,7 +64,9 @@ public class EmployeeDaoClient {
 
             EmployeeFileWriter writer = null;
             try {
-                writer = new EmployeeFileWriter("example.csv");
+                String buildPath = ResourceUtil.getBuildDir(
+                        EmployeeDaoClient.class).getCanonicalPath();
+                writer = new EmployeeFileWriter(buildPath + "/example.csv");
                 writer.initialize();
                 dao.fetchAllEmployee(writer);
             } catch (FileNotFoundException e) {
