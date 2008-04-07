@@ -20,7 +20,9 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 
+import org.seasar.dao.DaoAnnotationReader;
 import org.seasar.dao.DaoMetaDataFactory;
+import org.seasar.dao.NullBean;
 import org.seasar.dao.annotation.tiger.Arguments;
 import org.seasar.dao.annotation.tiger.CheckSingleRowUpdate;
 import org.seasar.dao.annotation.tiger.NoPersistentProperty;
@@ -44,7 +46,7 @@ public class DaoAnnotationReaderImplTest extends
         AbstractDaoAnnotationReaderImplTest {
 
     protected void setUp() throws Exception {
-        clazz = AbstractAaaDaoImpl.class;
+        clazz = AbstractAaaDaoImpl2.class;
         BeanDesc daoDesc = BeanDescFactory.getBeanDesc(clazz);
         annotationReader = new DaoAnnotationReaderImpl(daoDesc);
         aaaClazz = Aaa.class;
@@ -73,6 +75,13 @@ public class DaoAnnotationReaderImplTest extends
         Method method = AaaDao.class.getMethod("findAll3", new Class[0]);
         Class<?> clazz = annotationReader.getBeanClass(method);
         assertEquals(Integer.class, clazz);
+    }
+
+    public void testGetBeanClass_noAnnotation() throws Exception {
+        BeanDesc daoDesc = BeanDescFactory.getBeanDesc(Employee.class);
+        DaoAnnotationReader reader = new DaoAnnotationReaderImpl(daoDesc);
+        Class clazz = reader.getBeanClass();
+        assertEquals(NullBean.class, clazz);
     }
 
     @S2Dao(bean = Aaa.class)
@@ -135,6 +144,15 @@ public class DaoAnnotationReaderImplTest extends
             implements Aaa2Dao {
 
         public AbstractAaaDaoImpl(DaoMetaDataFactory daoMetaDataFactory) {
+            super(daoMetaDataFactory);
+        }
+
+    }
+
+    // [DAO-135] AOPによるエンハンスされたクラスの代わり
+    public static abstract class AbstractAaaDaoImpl2 extends AbstractAaaDaoImpl {
+
+        public AbstractAaaDaoImpl2(DaoMetaDataFactory daoMetaDataFactory) {
             super(daoMetaDataFactory);
         }
 

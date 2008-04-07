@@ -165,14 +165,20 @@ public class DaoAnnotationReaderImpl extends FieldDaoAnnotationReader {
     }
 
     private Class<?> getBeanClass0(Class<?> daoClass) {
-        final Class<?> beanClass = getBeanClassFromDao(daoClass);
+        Class<?> beanClass = getBeanClassFromDao(daoClass);
         if (beanClass != null) {
             return beanClass;
         }
 
-        HandlerImpl handlerImpl = new HandlerImpl();
-        ImplementInterfaceWalker.walk(daoClass, handlerImpl);
-        return handlerImpl.foundBeanClass;
+        Class<?> testClass = daoClass;
+        while (beanClass == null && testClass != null
+                && testClass != Object.class) {
+            HandlerImpl handlerImpl = new HandlerImpl();
+            ImplementInterfaceWalker.walk(testClass, handlerImpl);
+            beanClass = handlerImpl.foundBeanClass;
+            testClass = testClass.getSuperclass();
+        }
+        return beanClass;
     }
 
     private static class HandlerImpl implements

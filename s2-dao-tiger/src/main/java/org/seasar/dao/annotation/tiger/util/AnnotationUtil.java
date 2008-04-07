@@ -37,16 +37,23 @@ public class AnnotationUtil {
     @SuppressWarnings("unchecked")
     private static <T extends Annotation> T getAnnotation0(Class<?> clazz,
             Class<T> annotationClass) {
-        final T annotation = getAnnotationFromClass(clazz, annotationClass);
+        T annotation = getAnnotationFromClass(clazz, annotationClass);
         if (annotation != null) {
             return annotation;
         }
 
-        HandlerImpl handlerImpl = new HandlerImpl(annotationClass);
-        ImplementInterfaceWalker.walk(clazz, handlerImpl);
-        return (T) handlerImpl.foundClass;
+        Class testClass = clazz;
+        while (annotation == null && testClass != null
+                && testClass != Object.class) {
+            HandlerImpl handlerImpl = new HandlerImpl(annotationClass);
+            ImplementInterfaceWalker.walk(testClass, handlerImpl);
+            annotation = (T) handlerImpl.foundClass;
+            testClass = testClass.getSuperclass();
+        }
+        return annotation;
     }
 
+    @SuppressWarnings("unchecked")
     private static class HandlerImpl<T extends Annotation> implements
             ImplementInterfaceWalker.Handler {
 

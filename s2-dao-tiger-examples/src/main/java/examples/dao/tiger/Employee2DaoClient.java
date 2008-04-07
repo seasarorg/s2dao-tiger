@@ -36,6 +36,8 @@ public class Employee2DaoClient {
             }
             Employee employee = dao.getEmployee(7788);
             System.out.println(employee);
+
+            dao.update(employee);
         } finally {
             container.destroy();
         }

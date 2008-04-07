@@ -17,10 +17,17 @@ package examples.dao.tiger;
 
 import java.util.List;
 
+import org.seasar.dao.annotation.tiger.Arguments;
+import org.seasar.dao.annotation.tiger.S2Dao;
+
+@S2Dao(bean = Employee.class)
 public interface Employee2Dao {
 
     public List getEmployees(String ename);
 
+    @Arguments("empno")
     public Employee getEmployee(int empno);
+
+    public int update(Employee employee);
 
 }
