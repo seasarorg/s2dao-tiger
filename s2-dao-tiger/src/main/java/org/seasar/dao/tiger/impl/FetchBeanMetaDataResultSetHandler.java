@@ -17,9 +17,7 @@ package org.seasar.dao.tiger.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -31,8 +29,6 @@ import org.seasar.dao.impl.AbstractBeanMetaDataResultSetHandler;
 import org.seasar.dao.impl.RelationKey;
 import org.seasar.dao.impl.RelationRowCache;
 import org.seasar.dao.tiger.FetchHandler;
-import org.seasar.extension.jdbc.PropertyType;
-import org.seasar.extension.jdbc.ValueType;
 import org.seasar.framework.beans.PropertyDesc;
 
 /**
@@ -117,51 +113,6 @@ public class FetchBeanMetaDataResultSetHandler extends
             }
         }
         return Integer.valueOf(count);
-    }
-
-    @SuppressWarnings("unchecked")
-    protected RelationKey createRelationKey(ResultSet rs,
-            RelationPropertyType rpt, Set columnNames, Map relKeyValues)
-            throws SQLException {
-
-        List keyList = new ArrayList();
-        BeanMetaData bmd = rpt.getBeanMetaData();
-        for (int i = 0; i < rpt.getKeySize(); ++i) {
-            /*
-             * PropertyType pt = bmd
-             * .getPropertyTypeByColumnName(rpt.getYourKey(i)); ValueType
-             * valueType = pt.getValueType(); String columnName =
-             * pt.getColumnName() + "_" + rpt.getRelationNo();
-             */
-            ValueType valueType = null;
-            String columnName = rpt.getMyKey(i);
-            if (columnNames.contains(columnName)) {
-                PropertyType pt = getBeanMetaData()
-                        .getPropertyTypeByColumnName(columnName);
-                valueType = pt.getValueType();
-            } else {
-                PropertyType pt = bmd.getPropertyTypeByColumnName(rpt
-                        .getYourKey(i));
-                columnName = pt.getColumnName() + "_" + rpt.getRelationNo();
-                if (columnNames.contains(columnName)) {
-                    valueType = pt.getValueType();
-                } else {
-                    return null;
-                }
-            }
-            Object value = valueType.getValue(rs, columnName);
-            if (value == null) {
-                return null;
-            }
-            relKeyValues.put(columnName, value);
-            keyList.add(value);
-        }
-        if (keyList.size() > 0) {
-            Object[] keys = keyList.toArray();
-            return new RelationKey(keys);
-        } else {
-            return null;
-        }
     }
 
 }
