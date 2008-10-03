@@ -22,7 +22,6 @@ import junit.framework.TestCase;
 import org.seasar.dao.ArgumentDtoAnnotationReader;
 import org.seasar.dao.annotation.tiger.ParameterType;
 import org.seasar.dao.annotation.tiger.ProcedureParameter;
-import org.seasar.dao.annotation.tiger.ProcedureParameterIndex;
 import org.seasar.dao.annotation.tiger.ValueType;
 import org.seasar.framework.beans.BeanDesc;
 import org.seasar.framework.beans.factory.BeanDescFactory;
@@ -52,7 +51,7 @@ public class ArgumentDtoAnnotationReaderImplTest extends TestCase {
     }
 
     public void testGetProcedureParameter_constantAnnotation() throws Exception {
-        Field field = fooDesc.getField("aaa");
+        Field field = hogeDesc.getField("aaa");
         String value = reader.getProcedureParameter(fooDesc, field);
         assertEquals("in", value);
     }
@@ -65,7 +64,7 @@ public class ArgumentDtoAnnotationReaderImplTest extends TestCase {
 
     public void testGetProcedureParameter_none_constantAnnotation()
             throws Exception {
-        Field field = fooDesc.getField("bbb");
+        Field field = hogeDesc.getField("bbb");
         String value = reader.getProcedureParameter(fooDesc, field);
         assertNull(value);
     }
@@ -79,57 +78,9 @@ public class ArgumentDtoAnnotationReaderImplTest extends TestCase {
 
     public void testGetProcedureParameter_public_constantAnnotation()
             throws Exception {
-        Field field = fooDesc.getField("ccc");
+        Field field = hogeDesc.getField("ccc");
         String value = reader.getProcedureParameter(fooDesc, field);
         assertEquals("out", value);
-    }
-
-    public void testGetProcedureParameterIndex_fieldAnnotation()
-            throws Exception {
-        Field field = hogeDesc.getField("aaa");
-        Integer value = reader.getProcedureParameterIndex(hogeDesc, field);
-        assertEquals(new Integer(1), value);
-    }
-
-    public void testGetProcedureParameterIndex_methodAnnoation()
-            throws Exception {
-        Field field = hogeDesc.getField("ddd");
-        Integer value = reader.getProcedureParameterIndex(hogeDesc, field);
-        assertEquals(new Integer(3), value);
-    }
-
-    public void testGetProcedureParameterIndex_constantAnnotation()
-            throws Exception {
-        Field field = fooDesc.getField("aaa");
-        Integer value = reader.getProcedureParameterIndex(fooDesc, field);
-        assertEquals(new Integer(1), value);
-    }
-
-    public void testGetProcedureParameterIndex_none() throws Exception {
-        Field field = hogeDesc.getField("bbb");
-        String value = reader.getProcedureParameter(hogeDesc, field);
-        assertNull(value);
-    }
-
-    public void testGetProcedureParameterIndex_none_constantAnnotation()
-            throws Exception {
-        Field field = fooDesc.getField("bbb");
-        Integer value = reader.getProcedureParameterIndex(fooDesc, field);
-        assertNull(value);
-    }
-
-    public void testGetProcedureParameterIndex_public_fieldAnnotation()
-            throws Exception {
-        Field field = hogeDesc.getField("ccc");
-        Integer value = reader.getProcedureParameterIndex(hogeDesc, field);
-        assertEquals(new Integer(2), value);
-    }
-
-    public void testGetProcedureParameterIndex_public_constantAnnotation()
-            throws Exception {
-        Field field = fooDesc.getField("ccc");
-        Integer value = reader.getProcedureParameterIndex(fooDesc, field);
-        assertEquals(new Integer(2), value);
     }
 
     public void testGetValueType_fieldAnnotation() throws Exception {
@@ -143,7 +94,7 @@ public class ArgumentDtoAnnotationReaderImplTest extends TestCase {
     }
 
     public void testGetValueType_constantAnnotation() throws Exception {
-        Field field = fooDesc.getField("aaa");
+        Field field = hogeDesc.getField("aaa");
         assertEquals("hogeValueType", reader.getValueType(fooDesc, field));
     }
 
@@ -151,7 +102,6 @@ public class ArgumentDtoAnnotationReaderImplTest extends TestCase {
 
         @ValueType("hogeValueType")
         @ProcedureParameter()
-        @ProcedureParameterIndex(1)
         @SuppressWarnings("unused")
         private String aaa;
 
@@ -159,13 +109,11 @@ public class ArgumentDtoAnnotationReaderImplTest extends TestCase {
         private String bbb;
 
         @ProcedureParameter(ParameterType.OUT)
-        @ProcedureParameterIndex(2)
         public String ccc;
 
         private String ddd;
 
         @ProcedureParameter(ParameterType.OUT)
-        @ProcedureParameterIndex(3)
         public void setDdd(String ddd) {
             this.ddd = ddd;
         }
@@ -184,11 +132,7 @@ public class ArgumentDtoAnnotationReaderImplTest extends TestCase {
 
         public static final String aaa_PROCEDURE_PARAMETER = "in";
 
-        public static final int aaa_PROCEDURE_PARAMETER_INDEX = 1;
-
         public static final String ccc_PROCEDURE_PARAMETER = "out";
-
-        public static final int ccc_PROCEDURE_PARAMETER_INDEX = 2;
 
         @SuppressWarnings("unused")
         private String aaa;

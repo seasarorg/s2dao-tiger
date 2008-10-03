@@ -21,7 +21,6 @@ import java.lang.reflect.Method;
 
 import org.seasar.dao.ArgumentDtoAnnotationReader;
 import org.seasar.dao.annotation.tiger.ProcedureParameter;
-import org.seasar.dao.annotation.tiger.ProcedureParameterIndex;
 import org.seasar.dao.annotation.tiger.ValueType;
 import org.seasar.dao.impl.FieldArgumentDtoAnnotationReader;
 import org.seasar.framework.beans.BeanDesc;
@@ -44,17 +43,6 @@ public class ArgumentDtoAnnotationReaderImpl extends
             return parameter.value().name().toLowerCase();
         }
         return super.getProcedureParameter(dtoDesc, field);
-    }
-
-    @Override
-    public Integer getProcedureParameterIndex(final BeanDesc dtoDesc,
-            final Field field) {
-        final ProcedureParameterIndex parameterIndex = getAnnotation(dtoDesc,
-                field, ProcedureParameterIndex.class);
-        if (parameterIndex != null) {
-            return parameterIndex.value();
-        }
-        return super.getProcedureParameterIndex(dtoDesc, field);
     }
 
     @Override
