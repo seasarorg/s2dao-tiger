@@ -46,11 +46,6 @@
     <name>The Seasar Foundation</name>
     <url>http://www.seasar.org/</url>
   </organization>
-  <modules>
-    <module>s2-dao-tiger</module>
-    <module>s2-dao-tiger-examples</module>
-    <module>s2-dao-tiger-s24-test</module>
-  </modules>
   <build>
     <defaultGoal>validate</defaultGoal>
     <pluginManagement>
@@ -94,6 +89,11 @@
        </extension>
      </extensions>
   </build>
+  <modules>
+    <module>s2-dao-tiger</module>
+    <module>s2-dao-tiger-examples</module>
+    <module>s2-dao-tiger-s24-test</module>
+  </modules>
   <repositories>
     <repository>
       <id>maven.seasar.org</id>
