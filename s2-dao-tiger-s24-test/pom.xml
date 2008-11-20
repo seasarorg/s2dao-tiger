@@ -5,7 +5,7 @@
 >
   <parent>
     <groupId>org.seasar.dao</groupId>
-    <artifactId>s2-dao-project</artifactId>
+    <artifactId>s2-dao-tiger-project</artifactId>
     <version>1.0.50-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
